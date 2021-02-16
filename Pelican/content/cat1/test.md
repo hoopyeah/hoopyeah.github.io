@@ -4,4 +4,4 @@ Tags: testtag
 Author: Cody Fernandez
 Summary: This is an article
 
-"Hope" is the thing with feathers -
+"Hope" is the thing with feathers - $e=mc^2$

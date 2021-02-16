@@ -6,6 +6,8 @@ SITENAME = 'Hoopyeah'
 SITEURL = ''
 THEME = '../../pelican-themes/gum'
 
+TYPOGRIFY = True
+
 PATH = 'content'
 STATIC_PATHS = ['extra/CNAME', 'extra/robots.txt']
 EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},
