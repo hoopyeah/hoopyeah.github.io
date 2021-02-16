@@ -4,6 +4,7 @@
 AUTHOR = 'Cody Fernandez'
 SITENAME = 'Hoopyeah'
 SITEURL = ''
+THEME = '../../pelican-themes/gum'
 
 PATH = 'content'
 STATIC_PATHS = ['extra/CNAME', 'extra/robots.txt']
@@ -33,6 +34,12 @@ SOCIAL = (('You can add links in your config file', '#'),
           ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 10
+
+GITHUB_URL = ''
+TWITTER_URL = ''
+FACEBOOK_URL = ''
+GOOGLEPLUS_URL = ''
+SITESUBTITLE = 'your site subtitle'
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
