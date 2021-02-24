@@ -5,6 +5,7 @@ import shlex
 import shutil
 import sys
 import datetime
+import http
 
 from invoke import task
 from invoke.main import program
@@ -70,10 +71,24 @@ def serve(c):
     server.serve_forever()
 
 @task
+def simple_serve(c):
+    import http.server
+    import socketserver
+
+    PORT = 8000
+
+    Handler = http.server.SimpleHTTPRequestHandler
+
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        print("serving at port", PORT)
+        httpd.serve_forever()
+
+@task
 def reserve(c):
     """`build`, then `serve`"""
     build(c)
-    serve(c)
+    os.chdir("output")
+    simple_serve(c)
 
 @task
 def preview(c):
@@ -122,6 +137,11 @@ def gh_pages(c):
     c.run('ghp-import -b {github_pages_branch} '
           '-m {commit_message} '
           '{deploy_path} -p'.format(**CONFIG))
+
+@task
+def simple_publish(c):
+    pelican_run('-o .. -s {settings_base}'.format(**CONFIG))
+    # pelican content -o .. -s pelicanconf.py
 
 def pelican_run(cmd):
     cmd += ' ' + program.core.remainder  # allows to pass-through args to pelican

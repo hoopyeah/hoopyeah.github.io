@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>Notes on 3B1B ML Videos</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/pygment.css" />
+
+        <script src="/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="/">Hoopyeah <strong>your site subtitle</strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="/">Home</a></li>
+
+                <li><a href="/pages/about.html">About</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="/notes-on-3b1b-ml-videos.html" rel="bookmark"
+                   title="Permalink to Notes on 3B1B ML Videos">Notes on <span class="caps">3B1B</span> <span class="caps">ML</span>&nbsp;Videos</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2021-02-15T11:26:00-05:00">
+                Mon 15 February 2021
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="/author/cody-fernandez.html"> Cody Fernandez</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h1>3Blue1Brown video&nbsp;notes</h1>
+<p>I watch the four-episode playlist on Youtube. Here&#8217;s what I felt compelled to write&nbsp;down.</p>
+<h2>Episode&nbsp;1</h2>
+<ul>
+<li>Neuron - a thing that holds a&nbsp;number</li>
+<li>28x28 pixels = 784&nbsp;neurons</li>
+<li>value of neuron is its&nbsp;&#8220;activation&#8221;</li>
+<li>these 784 neurons make up hte first layer of the&nbsp;network</li>
+<li>last layer is 10 neurons, one for each digit&nbsp;choice</li>
+<li>activation of these neuorons is 0 -&gt; 1, likelihood digit is that&nbsp;number</li>
+<li><span class="dquo">&#8220;</span>Hidden layers&#8221; -&gt; the black&nbsp;box</li>
+<li>2 layers of 16 neurons - arbitrary, lots of room to experiment with&nbsp;structure</li>
+<li>it&#8217;s all edge detection (not acutally&nbsp;true)</li>
+<li>what parameters should the network&nbsp;have?</li>
+<li>assign weights to each connection from one layer to the next, then compute the weighted sum of activations per&nbsp;neuron</li>
+<li>activations should be between zero and&nbsp;one</li>
+</ul>
+<p>Sigmoid or logistic&nbsp;curve:
+</p>
+<div class="math">$$
+\sigma(x)=\frac{1}{1+e^{x}}
+$$</div>
+<ul>
+<li>so the activation is basically a measure of how positive the relevant weighted sum&nbsp;is</li>
+<li>bias against inactivity, so add bias to weighted sum before applying the sigmoid&nbsp;function</li>
+<li>learning -&gt; finding the right weights and&nbsp;biases</li>
+<li>
+<p><span class="dquo">&#8220;</span>What are the weights and biases doing?&#8221;
+<div class="math">$$
+a^{(1)}=\sigma(Wa^{(0)}+b)
+$$</div>
+</p>
+</li>
+<li>
+<p>neuron - actually, a function: inputs are the previous neurons, output is one&nbsp;number</p>
+</li>
+<li>sigmoid -&gt; old school. ReLU -&gt; easier to train. <span class="math">\(ReLU(a)=max(0,a)\)</span>. Rectified Linear&nbsp;Unit.</li>
+</ul>
+<h2>Episode&nbsp;2</h2>
+<ul>
+<li>cost function - taken set of weights and biases as input, averages to single number for&nbsp;output</li>
+<li>find the minimum of the cost&nbsp;function</li>
+<li>no guarantee on local&nbsp;minimum</li>
+<li>gradient - direction of steepest&nbsp;descent</li>
+<li>length of gradient also reveals&nbsp;steepness</li>
+<li>take <span class="math">\(-\nabla&nbsp;C(\vec{W})\)</span> </li>
+<li>learning is just minimizing a cost&nbsp;function</li>
+<li>also cost function should be&nbsp;smooth</li>
+<li>gradient dscent -&gt; sign of each weigt tells direction of change, value tells magnitude of&nbsp;change</li>
+<li>old tech -&gt; multilayer&nbsp;peceptron</li>
+</ul>
+<h2>Episode&nbsp;3</h2>
+<ul>
+<li>backpropagation - computes the&nbsp;gradient</li>
+<li>change weights in proportion to&nbsp;activations</li>
+<li>change activations in proporiton to&nbsp;weights</li>
+<li>starting from outputs, sum desired changes on the preceding netowek layer for each neuron of the output&nbsp;layer</li>
+<li>Recursively apply across layers, average over all&nbsp;data </li>
+<li>stochastic gradient descent - gd in&nbsp;mini-batches</li>
+</ul>
+<h2>Episode&nbsp;4</h2>
+<ul>
+<li>For one example (e.g. image):
+<div class="math">$$
+\begin{array}{rcl} 
+Cost C_{0}(\ldots) &amp; = &amp; {(a^{(L)}-y)}^2 \\
+z^{L} &amp; = &amp; w^{L}a^{l-1}+b^{L}\\
+a^{L} &amp; = &amp; \sigma(z^{L})
+\end{array} 
+$$</div>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">{</span>
+<span class="err">    w  a  b</span>
+<span class="err">    |__|__|</span>
+<span class="err">       |</span>
+<span class="err">       z</span>
+<span class="err">       |</span>
+<span class="err">    y__a</span>
+<span class="err">       |</span>
+<span class="err">       C</span>
+<span class="err">}</span>
+</code></pre></div>
+
+<ul>
+<li>y is desired&nbsp;output</li>
+<li>how sensitive is the cost function to small changes in&nbsp;weights?</li>
+</ul>
+<div class="math">$$
+\begin{array}{rcl}
+\frac{\partial C_0}{\partial w^{(L)}} &amp; = &amp;  \frac{\partial z^{(L)}}{\partial w^{(L)}} \frac{\partial a^{(L)}}{\partial z^{(L)}} \frac{\partial C_0}{\partial a^{(L)}}\\
+\frac{\partial C_0}{\partial w^{(L)}} &amp; = &amp; 2(a^{(L)}-y)\\
+\frac{\partial a^{(L)}}{\partial z^{(L)}} &amp; = &amp; \sigma^{\prime} (z^{(L)})\\
+\frac{\partial z^{(L)}}{\partial w^{(L)}} &amp; = &amp; a^{(L-1)}
+\end{array}
+$$</div>
+<ul>
+<li>That last one depends on the strength of the previous&nbsp;neuron</li>
+</ul>
+<div class="math">$$
+\frac{\partial C}{\partial w^{(L)}} = \frac{1}{n} \sum_{k = 1}^{n-1} \frac{\partial C_k}{\partial w^{(L)}}\\
+\begin{align}
+   \nabla C  &amp;= \begin{bmatrix}
+                \frac{\partial C}{\partial w^{(1)}} \\
+                \vdots \\
+                \frac{\partial C}{\partial w^{(L)}}
+                \end{bmatrix}
+\end{align}
+$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            </div><!-- /.entry-content -->
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+  <h4>Pages</h4>
+
+  <ul>
+
+    <li ><a href="/pages/about.html">About</a></li>
+  
+  <h4>Categories</h4>
+  <ul class="blank">
+    <li><a href="/category/catholic.html">Catholic</a></li>
+    <li><a href="/category/science.html">Science</a></li>
+  </ul>
+
+
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="/theme/js/libs/gumby.min.js"></script>
+  <script src="/theme/js/plugins.js"></script>
+</body>
+</html>
