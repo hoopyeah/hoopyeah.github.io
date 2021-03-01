@@ -5,6 +5,7 @@ AUTHOR = 'Cody Fernandez'
 SITENAME = 'Hoopyeah'
 SITEURL = ''
 THEME = '../../pelican-themes/gum'
+OUTPUT_PATH = '../'
 
 TYPOGRIFY = True
 
@@ -41,7 +42,7 @@ GITHUB_URL = ''
 TWITTER_URL = ''
 FACEBOOK_URL = ''
 GOOGLEPLUS_URL = ''
-SITESUBTITLE = 'your site subtitle'
+SITESUBTITLE = 'Jesus Christ is King of the Universe'
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True

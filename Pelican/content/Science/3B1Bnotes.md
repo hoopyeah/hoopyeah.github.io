@@ -1,5 +1,5 @@
 Title: Notes on 3B1B ML Videos
-Date: 2021-02-15 11:26
+Date: 2021-02-23 11:26
 Tags: Neural Networks, AI, ML
 Author: Cody Fernandez
 Summary: Collecting the notes I took while watching the 3Blue1Brown video series on neural networks.

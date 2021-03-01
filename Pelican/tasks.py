@@ -84,6 +84,11 @@ def simple_serve(c):
         httpd.serve_forever()
 
 @task
+def simple_publish(c):
+    pelican_run('-o .. -s {settings_base}'.format(**CONFIG))
+    # pelican content -o .. -s pelicanconf.py
+
+@task
 def reserve(c):
     """`build`, then `serve`"""
     build(c)
@@ -121,14 +126,15 @@ def livereload(c):
 
 @task
 def publish(c):
+    pelican_run('-o .. -s {settings_base}'.format(**CONFIG))
     """Publish to production via rsync"""
-    pelican_run('-s {settings_publish}'.format(**CONFIG))
-    c.run(
-        'rsync --delete --exclude ".DS_Store" -pthrvz -c '
-        '-e "ssh -p {ssh_port}" '
-        '{} {ssh_user}@{ssh_host}:{ssh_path}'.format(
-            CONFIG['deploy_path'].rstrip('/') + '/',
-            **CONFIG))
+    # pelican_run('-s {settings_publish}'.format(**CONFIG))
+    # c.run(
+    #     'rsync --delete --exclude ".DS_Store" -pthrvz -c '
+    #     '-e "ssh -p {ssh_port}" '
+    #     '{} {ssh_user}@{ssh_host}:{ssh_path}'.format(
+    #         CONFIG['deploy_path'].rstrip('/') + '/',
+    #         **CONFIG))
 
 @task
 def gh_pages(c):
