@@ -38,7 +38,7 @@ SOCIAL = (('You can add links in your config file', '#'),
 
 DEFAULT_PAGINATION = 10
 
-GITHUB_URL = ''
+GITHUB_URL = 'https://github.com/hoopyeah'
 TWITTER_URL = ''
 FACEBOOK_URL = ''
 GOOGLEPLUS_URL = ''

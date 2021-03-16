@@ -5,11 +5,11 @@ Author: Cody Fernandez
 Summary: Collecting the notes I took while reading the YOLOv1 paper
 
 # YOLOv1
-- Extremely fast, reasons globally about entire imgae, highly generalizable, fails on small objects
+- Extremely fast, reasons globally about entire image, highly generalizable, fails on small objects
 - Reframe object detection as a single regression problem.
-- From image pixels to bounding bos coordintaes and class probabilities
+- From image pixels to bounding box coordinates and class probabilities
 - Divide an image into an $SxS$ grid
-    - If the center of an obejct falls into that grid cell, that grid cell is responsible for detecting that object
+    - If the center of an object falls into that grid cell, that grid cell is responsible for detecting that object
     - A grid cell predicts $B$ bounding boxes and confidence scores
           - Confidence score covers likelihood box contains object and accuracy of box prediction
           - Confidence is $Pr(Objects)*IOU^{truth}_{pred}$

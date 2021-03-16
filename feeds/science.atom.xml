@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Hoopyeah - Science</title><link href="https://www.hoopyeah.com/" rel="alternate"></link><link href="https://www.hoopyeah.com/feeds/science.atom.xml" rel="self"></link><id>https://www.hoopyeah.com/</id><updated>2021-03-15T20:40:00-04:00</updated><subtitle>Jesus Christ is King of the Universe</subtitle><entry><title>Answers to Chapter 1</title><link href="https://www.hoopyeah.com/answers-to-chapter-1.html" rel="alternate"></link><published>2021-03-15T20:40:00-04:00</published><updated>2021-03-15T20:40:00-04:00</updated><author><name>Cody Fernandez</name></author><id>tag:www.hoopyeah.com,2021-03-15:/answers-to-chapter-1.html</id><summary type="html">&lt;p&gt;My answers to Chapter 1 of &lt;strong&gt;Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow&lt;/strong&gt; by Aurelien&amp;nbsp;Geron&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Chapter&amp;nbsp;1&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;How would you define Machine Learning?&lt;/strong&gt; Machine Learning is the science and art of programming computers so they can learn from data. Alternatively, it is the field of study that gives computers the ability to learn without being explicitly&amp;nbsp;programmed. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Can you name four types of problems where it shines?&lt;/strong&gt;&lt;ol&gt;
+&lt;li&gt;Problems for which existing solutions require a lot of fine-tuning or long lists of&amp;nbsp;rules. &lt;/li&gt;
+&lt;li&gt;Complex problems for which using a traditional approach yields no good&amp;nbsp;solution.&lt;/li&gt;
+&lt;li&gt;Fluctuating environments where the algorithm must adapt to new&amp;nbsp;data&lt;/li&gt;
+&lt;li&gt;Getting insights about complex problems and large amounts of data (data&amp;nbsp;mining).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What is a labeled training set?&lt;/strong&gt; A collection of data to be fed into an &lt;span class="caps"&gt;ML&lt;/span&gt; algorithm where instances have labels (desired solutions), which are used by the algorithm to classify new&amp;nbsp;objects.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What are the two most common supervised tasks?&lt;/strong&gt; Classification and target prediction. In classification, the algorithm learns the class of instances of the training set and must correctly classify new objects in the test set. In target prediction, the algorithm must predict a target value based on the set of features of a training instance (called predictors). Also&amp;nbsp;regression.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Can you name four common unsupervised tasks?&lt;/strong&gt; Clustering, visualization, anomaly detection, and association rule learning. In clustering, you try to detect groups of similar instances, letting the algorithm determine their connections. Visualization algorithms output a 2D or 3D representation of data while preserving as much structure as possible, allowing the user to see data organization and determine unsuspected patterns. Related to visualization is dimensionality reduction, which involves simplifying the data without losing too much information, often by merging correlated features together in a process called feature extraction. Anomaly detection involves identifying new instances after being trained on a clean set of standard instances. Novelty detection is similar, where the system identifies new types of instances rather than defects. In association rule learning, one digs into large amounts of data and discovers interesting relationships between&amp;nbsp;attributes. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What type of Machine Learning algorithm would you use to allow a robot to walk in various unknown terrains?&lt;/strong&gt; Due to resource constraints, you will want to use an online learning algorithm so that the robot can learn incrementally with mini-batches of data. Actually Reinforcement Learning would be&amp;nbsp;best.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What type of algorithm would you use to segment your customers into multiple groups?&lt;/strong&gt; A clustering algorithm would find similarities between customer segments in an unsupervised&amp;nbsp;manner.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Would you frame the problem of spam detection as a supervised learning problem or an unsupervised learning problem?&lt;/strong&gt; Supervised, as its main goal is classification of emails as ham or spam, which is a supervised learning&amp;nbsp;task.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What is an online learning system?&lt;/strong&gt; A system that trains incrementally on incoming data. The speed at which it changes how fast it should adapt to new data is called the learning&amp;nbsp;rate.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What is out-of-core learning?&lt;/strong&gt; When the dataset is so large that it can’t fit into one machine’s main memory, the algorithm runs training steps on parts of the data in sequence in an online learning&amp;nbsp;fashion.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What type of learning algorithm relies on a similarity measure to make predictions?&lt;/strong&gt; Instance-based learning&amp;nbsp;algorithm.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What is the difference between a model parameter and a learning algorithm’s hyperparameter?&lt;/strong&gt; Model parameters are degrees of freedom that are adjusted during learning by a fitness function (positive) or by a cost function (negative). A regularization hyperparameter is a parameter of the learning algorithm that constrains the possible values of the model parameters to prevent&amp;nbsp;overfitting.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What do model-based learning algorithms search for?&lt;/strong&gt; What is the most common strategy they use to succeed? How do they make predictions? They search for the optimal model parameter values given a cost/fitness function applied to a set of training data. Training a model based on the data. They take in new input, apply the model, and produce&amp;nbsp;output.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Can you name four of the main challenges in Machine Learning?&lt;/strong&gt; Challenges can be chalked up to “bad algorithm” or “bad data”. Bad data includes too little training data, nonrepresentative training data, poor quality training data, and irrelevant features in training data. Bad algorithm includes overfitting training data and underfitting training&amp;nbsp;data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If your model performs great on the training data but generalizes poorly to new instances, what is happening?&lt;/strong&gt; Can you name three possible solutions? It is overfitting the training data. One can simplify the model by selecting one with fewer parameters, reducing the number of attributes in the training data, or constraining the model. One can also gather more training data or reduce noise in the existing training&amp;nbsp;data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What is a test set, and why would you want to use it?&lt;/strong&gt; The test set is a portion of your training data that you set aside for testing the learning algorithm. Applying your algorithm to the test set after training it on the training set allows you to evaluate the generalization error of your&amp;nbsp;model.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What is the purpose of a validation set?&lt;/strong&gt; The validation set is a further subset of the training set (and independent of the test set) that is used to evaluate multiple models with various hyperparameters to determine the best model in a process called holdout&amp;nbsp;validation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What is the train-dev set, when do you need it, and how do you use it?&lt;/strong&gt; The train-dev set is a further subset of the training data that is used to evaluate models. You need it when the training data you have isn’t very representative of the inputs the model will receive. Process: train model on training set. Evaluate model on train-dev set. Failure means the model has overfit, and you can take the actions in Question 15 to address it. Success means the model is not overfitting the training data, so evaluate the model on the validation set. Failure means the model is struggling with the data mismatch, so try to reconcile the training and validation data and retrain the model. Success at this point is final success: you have a good model making good&amp;nbsp;predictions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What can go wrong if you tune hyperparameters using the test set?&lt;/strong&gt; You end up measuring the generalization error multiple times on just the test set. This means the hyperparameters are overtuned to fit just this test set, and will perform poorly on a different test&amp;nbsp;set.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;Bonus&amp;nbsp;Outline&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;Types of machine learning systems&lt;ol&gt;
+&lt;li&gt;Whether or not they are trained with human supervision&lt;ol&gt;
+&lt;li&gt;Supervised&lt;/li&gt;
+&lt;li&gt;Unsupervised&lt;/li&gt;
+&lt;li&gt;Semisupervised&lt;/li&gt;
+&lt;li&gt;Reinforcement&amp;nbsp;Learning&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Whether or not they can learn incrementally or on the fly&lt;ol&gt;
+&lt;li&gt;Online&amp;nbsp;learning&lt;/li&gt;
+&lt;li&gt;Batch&amp;nbsp;learning&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Whether they compare new data to known data or detect patterns in training data and build a predictive model&lt;ol&gt;
+&lt;li&gt;Instance-based&amp;nbsp;learning&lt;/li&gt;
+&lt;li&gt;Model-based&amp;nbsp;learning&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;These are not exclusive. A system can be an online, model-based, supervised learning&amp;nbsp;system.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Sources of Error&lt;ol&gt;
+&lt;li&gt;Sampling noise – the data sample is too small (nonrepresentative data is included as a result of&amp;nbsp;chance)&lt;/li&gt;
+&lt;li&gt;Sampling bias – Lots of data, but it is nonrepresentative due to a flawed sampling&amp;nbsp;method.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content><category term="Science"></category><category term="Neural Networks"></category><category term="AI"></category><category term="ML"></category></entry><entry><title>Notes on YOLOv1 Paper</title><link href="https://www.hoopyeah.com/notes-on-yolov1-paper.html" rel="alternate"></link><published>2021-02-23T17:40:00-05:00</published><updated>2021-02-23T17:40:00-05:00</updated><author><name>Cody Fernandez</name></author><id>tag:www.hoopyeah.com,2021-02-23:/notes-on-yolov1-paper.html</id><summary type="html">&lt;p&gt;Collecting the notes I took while reading the YOLOv1&amp;nbsp;paper&lt;/p&gt;</summary><content type="html">&lt;h1&gt;YOLOv1&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Extremely fast, reasons globally about entire image, highly generalizable, fails on small&amp;nbsp;objects&lt;/li&gt;
+&lt;li&gt;Reframe object detection as a single regression&amp;nbsp;problem.&lt;/li&gt;
+&lt;li&gt;From image pixels to bounding box coordinates and class&amp;nbsp;probabilities&lt;/li&gt;
+&lt;li&gt;Divide an image into an &lt;span class="math"&gt;\(SxS\)&lt;/span&gt; grid&lt;ul&gt;
+&lt;li&gt;If the center of an object falls into that grid cell, that grid cell is responsible for detecting that&amp;nbsp;object&lt;/li&gt;
+&lt;li&gt;A grid cell predicts &lt;span class="math"&gt;\(B\)&lt;/span&gt; bounding boxes and confidence scores&lt;ul&gt;
+&lt;li&gt;Confidence score covers likelihood box contains object and accuracy of box&amp;nbsp;prediction&lt;/li&gt;
+&lt;li&gt;Confidence is &lt;span class="math"&gt;\(Pr(Objects)*IOU^{truth}_{pred}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Intersection over union between predicted box and ground&amp;nbsp;truth&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;A bounding box has 5 predictions: &lt;span class="math"&gt;\(x, y, w, h,\)&lt;/span&gt; and &lt;span class="math"&gt;\(confidence\)&lt;/span&gt;.&lt;ul&gt;
+&lt;li&gt;&lt;span class="math"&gt;\((x, y)\)&lt;/span&gt; is the center of the box relative to bounds of grid&amp;nbsp;cell&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\((w,h)\)&lt;/span&gt; relative to whole&amp;nbsp;image&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(confidence\)&lt;/span&gt; is &lt;span class="caps"&gt;IOU&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;A grid cell predicts &lt;span class="math"&gt;\(C\)&lt;/span&gt; conditional class probablilities &lt;span class="math"&gt;\(Pr(Class_i|Objects)\)&lt;/span&gt;. These are conditiones on the grid cell containing the object.&lt;ul&gt;
+&lt;li&gt;Only predict one set of class probabilities per grid&amp;nbsp;cell&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;At test time, multiply conditional class probabilities and individual box confidence predictions to get class-specific confidence scores for each&amp;nbsp;box.&lt;/li&gt;
+&lt;li&gt;Evaluation: &lt;span class="math"&gt;\(S=7, B=2, C=20\)&lt;/span&gt;. Final preditions is &lt;span class="math"&gt;\(7x7x30\)&lt;/span&gt;&amp;nbsp;tensor.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;24 convolutional layers, 2 fully connected layers &lt;em&gt;(dense?)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Use &lt;span class="math"&gt;\(1x1\)&lt;/span&gt; reduction layer and &lt;span class="math"&gt;\(3x3\)&lt;/span&gt; convolution&amp;nbsp;layers&lt;/li&gt;
+&lt;li&gt;Adding both convolutional and connected laters to pretrained networks can improve&amp;nbsp;performance&lt;/li&gt;
+&lt;li&gt;Normalize bounding box &lt;span class="math"&gt;\((w, h)\)&lt;/span&gt; by image &lt;span class="math"&gt;\((w ,h)\)&lt;/span&gt; so it&amp;#8217;s in &lt;span class="math"&gt;\((0,1)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Parametrize bounding box &lt;span class="math"&gt;\((x, y)\)&lt;/span&gt; to be offsets of grid cell location, so it&amp;#8217;s in &lt;span class="math"&gt;\((0,1)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use linear activation on final layer and leaky ReLU everywhere else:
+&lt;div class="math"&gt;$$
+    \phi(x) = \begin{cases} x, &amp;amp; \mbox{if } x&amp;gt;0 \\ 0.1x, &amp;amp; \mbox{otherwise} \end{cases}
+$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Optimize sum-squared error in&amp;nbsp;output&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Easy&amp;nbsp;(good)&lt;/li&gt;
+&lt;li&gt;Does not maximize average precision&amp;nbsp;(bad)&lt;/li&gt;
+&lt;li&gt;Weights localization error equally with classification error&amp;nbsp;(bad)&lt;/li&gt;
+&lt;li&gt;Model unstable due to overpowering gradient from cells containing objects. Object-lacking cells plunge to zero (bad)&lt;ul&gt;
+&lt;li&gt;Add &lt;span class="math"&gt;\(\lambda_{coord} = 5\)&lt;/span&gt; and &lt;span class="math"&gt;\(\lambda_{noobj}=0.5\)&lt;/span&gt;. Increase loss of bounding box coordinate predictions and decrease loss of confidence predictions of object-lacking boxes&amp;nbsp;(good)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Use square root of bounding box &lt;span class="math"&gt;\((w,h)\)&lt;/span&gt; to properly weight small deviations in large boxes&amp;nbsp;(good)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Assign one predictor to be &amp;#8220;responsible&amp;#8221; for object prediction absed on hights current &lt;span class="caps"&gt;IOU&lt;/span&gt; with gound truth. This leads to bounding box predictor specialization, improving overall&amp;nbsp;recall.&lt;/li&gt;
+&lt;li&gt;The loss function only penalizes classification error if an object is present in that grid cell. It only penalizaes bounding box coordinate error if that predictor is &amp;#8220;responsible&amp;#8221; for that ground truth&amp;nbsp;box.&lt;/li&gt;
+&lt;li&gt;Grid design enforces spatial diversity in the bounding box&amp;nbsp;predictions.&lt;/li&gt;
+&lt;li&gt;&lt;span class="caps"&gt;YOLO&lt;/span&gt; imposes strong spatial constraints on bounding box predictions. It therefor struggles with small objects in&amp;nbsp;groups.&lt;/li&gt;
+&lt;li&gt;Struggles to generalize to new aspect ratios or&amp;nbsp;configurations&lt;/li&gt;
+&lt;li&gt;Uses coarse features for bounding box&amp;nbsp;prediction.&lt;/li&gt;
+&lt;li&gt;Main source of error is incorrect&amp;nbsp;localizations. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Science"></category><category term="Neural Networks"></category><category term="AI"></category><category term="ML"></category></entry><entry><title>Notes on 3B1B ML Videos</title><link href="https://www.hoopyeah.com/notes-on-3b1b-ml-videos.html" rel="alternate"></link><published>2021-02-23T11:26:00-05:00</published><updated>2021-02-23T11:26:00-05:00</updated><author><name>Cody Fernandez</name></author><id>tag:www.hoopyeah.com,2021-02-23:/notes-on-3b1b-ml-videos.html</id><summary type="html">&lt;p&gt;Collecting the notes I took while watching the 3Blue1Brown video series on neural&amp;nbsp;networks.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;3Blue1Brown video&amp;nbsp;notes&lt;/h1&gt;
+&lt;p&gt;I watch the four-episode playlist on Youtube. Here&amp;#8217;s what I felt compelled to write&amp;nbsp;down.&lt;/p&gt;
+&lt;h2&gt;Episode&amp;nbsp;1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Neuron - a thing that holds a&amp;nbsp;number&lt;/li&gt;
+&lt;li&gt;28x28 pixels = 784&amp;nbsp;neurons&lt;/li&gt;
+&lt;li&gt;value of neuron is its&amp;nbsp;&amp;#8220;activation&amp;#8221;&lt;/li&gt;
+&lt;li&gt;these 784 neurons make up hte first layer of the&amp;nbsp;network&lt;/li&gt;
+&lt;li&gt;last layer is 10 neurons, one for each digit&amp;nbsp;choice&lt;/li&gt;
+&lt;li&gt;activation of these neuorons is 0 -&amp;gt; 1, likelihood digit is that&amp;nbsp;number&lt;/li&gt;
+&lt;li&gt;&lt;span class="dquo"&gt;&amp;#8220;&lt;/span&gt;Hidden layers&amp;#8221; -&amp;gt; the black&amp;nbsp;box&lt;/li&gt;
+&lt;li&gt;2 layers of 16 neurons - arbitrary, lots of room to experiment with&amp;nbsp;structure&lt;/li&gt;
+&lt;li&gt;it&amp;#8217;s all edge detection (not acutally&amp;nbsp;true)&lt;/li&gt;
+&lt;li&gt;what parameters should the network&amp;nbsp;have?&lt;/li&gt;
+&lt;li&gt;assign weights to each connection from one layer to the next, then compute the weighted sum of activations per&amp;nbsp;neuron&lt;/li&gt;
+&lt;li&gt;activations should be between zero and&amp;nbsp;one&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sigmoid or logistic&amp;nbsp;curve:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\sigma(x)=\frac{1}{1+e^{x}}
+$$&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;so the activation is basically a measure of how positive the relevant weighted sum&amp;nbsp;is&lt;/li&gt;
+&lt;li&gt;bias against inactivity, so add bias to weighted sum before applying the sigmoid&amp;nbsp;function&lt;/li&gt;
+&lt;li&gt;learning -&amp;gt; finding the right weights and&amp;nbsp;biases&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;span class="dquo"&gt;&amp;#8220;&lt;/span&gt;What are the weights and biases doing?&amp;#8221;
+&lt;div class="math"&gt;$$
+a^{(1)}=\sigma(Wa^{(0)}+b)
+$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;neuron - actually, a function: inputs are the previous neurons, output is one&amp;nbsp;number&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;sigmoid -&amp;gt; old school. ReLU -&amp;gt; easier to train. &lt;span class="math"&gt;\(ReLU(a)=max(0,a)\)&lt;/span&gt;. Rectified Linear&amp;nbsp;Unit.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Episode&amp;nbsp;2&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;cost function - taken set of weights and biases as input, averages to single number for&amp;nbsp;output&lt;/li&gt;
+&lt;li&gt;find the minimum of the cost&amp;nbsp;function&lt;/li&gt;
+&lt;li&gt;no guarantee on local&amp;nbsp;minimum&lt;/li&gt;
+&lt;li&gt;gradient - direction of steepest&amp;nbsp;descent&lt;/li&gt;
+&lt;li&gt;length of gradient also reveals&amp;nbsp;steepness&lt;/li&gt;
+&lt;li&gt;take &lt;span class="math"&gt;\(-\nabla&amp;nbsp;C(\vec{W})\)&lt;/span&gt; &lt;/li&gt;
+&lt;li&gt;learning is just minimizing a cost&amp;nbsp;function&lt;/li&gt;
+&lt;li&gt;also cost function should be&amp;nbsp;smooth&lt;/li&gt;
+&lt;li&gt;gradient dscent -&amp;gt; sign of each weigt tells direction of change, value tells magnitude of&amp;nbsp;change&lt;/li&gt;
+&lt;li&gt;old tech -&amp;gt; multilayer&amp;nbsp;peceptron&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Episode&amp;nbsp;3&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;backpropagation - computes the&amp;nbsp;gradient&lt;/li&gt;
+&lt;li&gt;change weights in proportion to&amp;nbsp;activations&lt;/li&gt;
+&lt;li&gt;change activations in proporiton to&amp;nbsp;weights&lt;/li&gt;
+&lt;li&gt;starting from outputs, sum desired changes on the preceding netowek layer for each neuron of the output&amp;nbsp;layer&lt;/li&gt;
+&lt;li&gt;Recursively apply across layers, average over all&amp;nbsp;data &lt;/li&gt;
+&lt;li&gt;stochastic gradient descent - gd in&amp;nbsp;mini-batches&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Episode&amp;nbsp;4&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;For one example (e.g. image):
+&lt;div class="math"&gt;$$
+\begin{array}{rcl} 
+Cost C_{0}(\ldots) &amp;amp; = &amp;amp; {(a^{(L)}-y)}^2 \\
+z^{L} &amp;amp; = &amp;amp; w^{L}a^{l-1}+b^{L}\\
+a^{L} &amp;amp; = &amp;amp; \sigma(z^{L})
+\end{array} 
+$$&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;{&lt;/span&gt;
+&lt;span class="err"&gt;    w  a  b&lt;/span&gt;
+&lt;span class="err"&gt;    |__|__|&lt;/span&gt;
+&lt;span class="err"&gt;       |&lt;/span&gt;
+&lt;span class="err"&gt;       z&lt;/span&gt;
+&lt;span class="err"&gt;       |&lt;/span&gt;
+&lt;span class="err"&gt;    y__a&lt;/span&gt;
+&lt;span class="err"&gt;       |&lt;/span&gt;
+&lt;span class="err"&gt;       C&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;y is desired&amp;nbsp;output&lt;/li&gt;
+&lt;li&gt;how sensitive is the cost function to small changes in&amp;nbsp;weights?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="math"&gt;$$
+\begin{array}{rcl}
+\frac{\partial C_0}{\partial w^{(L)}} &amp;amp; = &amp;amp;  \frac{\partial z^{(L)}}{\partial w^{(L)}} \frac{\partial a^{(L)}}{\partial z^{(L)}} \frac{\partial C_0}{\partial a^{(L)}}\\
+\frac{\partial C_0}{\partial w^{(L)}} &amp;amp; = &amp;amp; 2(a^{(L)}-y)\\
+\frac{\partial a^{(L)}}{\partial z^{(L)}} &amp;amp; = &amp;amp; \sigma^{\prime} (z^{(L)})\\
+\frac{\partial z^{(L)}}{\partial w^{(L)}} &amp;amp; = &amp;amp; a^{(L-1)}
+\end{array}
+$$&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;That last one depends on the strength of the previous&amp;nbsp;neuron&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="math"&gt;$$
+\frac{\partial C}{\partial w^{(L)}} = \frac{1}{n} \sum_{k = 1}^{n-1} \frac{\partial C_k}{\partial w^{(L)}}\\
+\begin{align}
+   \nabla C  &amp;amp;= \begin{bmatrix}
+                \frac{\partial C}{\partial w^{(1)}} \\
+                \vdots \\
+                \frac{\partial C}{\partial w^{(L)}}
+                \end{bmatrix}
+\end{align}
+$$&lt;/div&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Science"></category><category term="Neural Networks"></category><category term="AI"></category><category term="ML"></category></entry></feed>

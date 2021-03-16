@@ -43,7 +43,7 @@ def clean(c):
 @task
 def build(c):
     """Build local version of site"""
-    pelican_run('-s {settings_base}'.format(**CONFIG))
+    pelican_run('-o output -s {settings_base}'.format(**CONFIG))
 
 @task
 def rebuild(c):
@@ -123,7 +123,6 @@ def livereload(c):
     # Serve output path on configured host and port
     server.serve(host=CONFIG['host'], port=CONFIG['port'], root=CONFIG['deploy_path'])
 
-
 @task
 def publish(c):
     pelican_run('-o .. -s {settings_base}'.format(**CONFIG))
@@ -144,10 +143,6 @@ def gh_pages(c):
           '-m {commit_message} '
           '{deploy_path} -p'.format(**CONFIG))
 
-@task
-def simple_publish(c):
-    pelican_run('-o .. -s {settings_base}'.format(**CONFIG))
-    # pelican content -o .. -s pelicanconf.py
 
 def pelican_run(cmd):
     cmd += ' ' + program.core.remainder  # allows to pass-through args to pelican

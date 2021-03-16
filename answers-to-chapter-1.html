@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>Answers to Chapter 1</title>
+        <meta charset="utf-8" />
+        <link href="https://www.hoopyeah.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Hoopyeah Full Atom Feed" />
+        <link href="https://www.hoopyeah.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Hoopyeah Full RSS Feed" />
+        <link href="https://www.hoopyeah.com/feeds/science.atom.xml" type="application/atom+xml" rel="alternate" title="Hoopyeah Categories Atom Feed" />
+        <link href="https://www.hoopyeah.com/feeds/science.rss.xml" type="application/rss+xml" rel="alternate" title="Hoopyeah Categories RSS Feed" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="https://www.hoopyeah.com/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.hoopyeah.com/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.hoopyeah.com/theme/pygment.css" />
+
+        <script src="https://www.hoopyeah.com/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="https://www.hoopyeah.com/">Hoopyeah <strong>Jesus Christ is King of the Universe</strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="https://www.hoopyeah.com/">Home</a></li>
+
+                <li><a href="https://www.hoopyeah.com/pages/about.html">About</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="https://www.hoopyeah.com/answers-to-chapter-1.html" rel="bookmark"
+                   title="Permalink to Answers to Chapter 1">Answers to Chapter&nbsp;1</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2021-03-15T20:40:00-04:00">
+                Mon 15 March 2021
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="https://www.hoopyeah.com/author/cody-fernandez.html"> Cody Fernandez</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h1>Chapter&nbsp;1</h1>
+<ol>
+<li><strong>How would you define Machine Learning?</strong> Machine Learning is the science and art of programming computers so they can learn from data. Alternatively, it is the field of study that gives computers the ability to learn without being explicitly&nbsp;programmed. </li>
+<li><strong>Can you name four types of problems where it shines?</strong><ol>
+<li>Problems for which existing solutions require a lot of fine-tuning or long lists of&nbsp;rules. </li>
+<li>Complex problems for which using a traditional approach yields no good&nbsp;solution.</li>
+<li>Fluctuating environments where the algorithm must adapt to new&nbsp;data</li>
+<li>Getting insights about complex problems and large amounts of data (data&nbsp;mining).</li>
+</ol>
+</li>
+<li><strong>What is a labeled training set?</strong> A collection of data to be fed into an <span class="caps">ML</span> algorithm where instances have labels (desired solutions), which are used by the algorithm to classify new&nbsp;objects.</li>
+<li><strong>What are the two most common supervised tasks?</strong> Classification and target prediction. In classification, the algorithm learns the class of instances of the training set and must correctly classify new objects in the test set. In target prediction, the algorithm must predict a target value based on the set of features of a training instance (called predictors). Also&nbsp;regression.</li>
+<li><strong>Can you name four common unsupervised tasks?</strong> Clustering, visualization, anomaly detection, and association rule learning. In clustering, you try to detect groups of similar instances, letting the algorithm determine their connections. Visualization algorithms output a 2D or 3D representation of data while preserving as much structure as possible, allowing the user to see data organization and determine unsuspected patterns. Related to visualization is dimensionality reduction, which involves simplifying the data without losing too much information, often by merging correlated features together in a process called feature extraction. Anomaly detection involves identifying new instances after being trained on a clean set of standard instances. Novelty detection is similar, where the system identifies new types of instances rather than defects. In association rule learning, one digs into large amounts of data and discovers interesting relationships between&nbsp;attributes. </li>
+<li><strong>What type of Machine Learning algorithm would you use to allow a robot to walk in various unknown terrains?</strong> Due to resource constraints, you will want to use an online learning algorithm so that the robot can learn incrementally with mini-batches of data. Actually Reinforcement Learning would be&nbsp;best.</li>
+<li><strong>What type of algorithm would you use to segment your customers into multiple groups?</strong> A clustering algorithm would find similarities between customer segments in an unsupervised&nbsp;manner.</li>
+<li><strong>Would you frame the problem of spam detection as a supervised learning problem or an unsupervised learning problem?</strong> Supervised, as its main goal is classification of emails as ham or spam, which is a supervised learning&nbsp;task.</li>
+<li><strong>What is an online learning system?</strong> A system that trains incrementally on incoming data. The speed at which it changes how fast it should adapt to new data is called the learning&nbsp;rate.</li>
+<li><strong>What is out-of-core learning?</strong> When the dataset is so large that it can’t fit into one machine’s main memory, the algorithm runs training steps on parts of the data in sequence in an online learning&nbsp;fashion.</li>
+<li><strong>What type of learning algorithm relies on a similarity measure to make predictions?</strong> Instance-based learning&nbsp;algorithm.</li>
+<li><strong>What is the difference between a model parameter and a learning algorithm’s hyperparameter?</strong> Model parameters are degrees of freedom that are adjusted during learning by a fitness function (positive) or by a cost function (negative). A regularization hyperparameter is a parameter of the learning algorithm that constrains the possible values of the model parameters to prevent&nbsp;overfitting.</li>
+<li><strong>What do model-based learning algorithms search for?</strong> What is the most common strategy they use to succeed? How do they make predictions? They search for the optimal model parameter values given a cost/fitness function applied to a set of training data. Training a model based on the data. They take in new input, apply the model, and produce&nbsp;output.</li>
+<li><strong>Can you name four of the main challenges in Machine Learning?</strong> Challenges can be chalked up to “bad algorithm” or “bad data”. Bad data includes too little training data, nonrepresentative training data, poor quality training data, and irrelevant features in training data. Bad algorithm includes overfitting training data and underfitting training&nbsp;data.</li>
+<li><strong>If your model performs great on the training data but generalizes poorly to new instances, what is happening?</strong> Can you name three possible solutions? It is overfitting the training data. One can simplify the model by selecting one with fewer parameters, reducing the number of attributes in the training data, or constraining the model. One can also gather more training data or reduce noise in the existing training&nbsp;data.</li>
+<li><strong>What is a test set, and why would you want to use it?</strong> The test set is a portion of your training data that you set aside for testing the learning algorithm. Applying your algorithm to the test set after training it on the training set allows you to evaluate the generalization error of your&nbsp;model.</li>
+<li><strong>What is the purpose of a validation set?</strong> The validation set is a further subset of the training set (and independent of the test set) that is used to evaluate multiple models with various hyperparameters to determine the best model in a process called holdout&nbsp;validation.</li>
+<li><strong>What is the train-dev set, when do you need it, and how do you use it?</strong> The train-dev set is a further subset of the training data that is used to evaluate models. You need it when the training data you have isn’t very representative of the inputs the model will receive. Process: train model on training set. Evaluate model on train-dev set. Failure means the model has overfit, and you can take the actions in Question 15 to address it. Success means the model is not overfitting the training data, so evaluate the model on the validation set. Failure means the model is struggling with the data mismatch, so try to reconcile the training and validation data and retrain the model. Success at this point is final success: you have a good model making good&nbsp;predictions.</li>
+<li><strong>What can go wrong if you tune hyperparameters using the test set?</strong> You end up measuring the generalization error multiple times on just the test set. This means the hyperparameters are overtuned to fit just this test set, and will perform poorly on a different test&nbsp;set.</li>
+</ol>
+<h1>Bonus&nbsp;Outline</h1>
+<ol>
+<li>Types of machine learning systems<ol>
+<li>Whether or not they are trained with human supervision<ol>
+<li>Supervised</li>
+<li>Unsupervised</li>
+<li>Semisupervised</li>
+<li>Reinforcement&nbsp;Learning</li>
+</ol>
+</li>
+<li>Whether or not they can learn incrementally or on the fly<ol>
+<li>Online&nbsp;learning</li>
+<li>Batch&nbsp;learning</li>
+</ol>
+</li>
+<li>Whether they compare new data to known data or detect patterns in training data and build a predictive model<ol>
+<li>Instance-based&nbsp;learning</li>
+<li>Model-based&nbsp;learning</li>
+</ol>
+</li>
+<li>These are not exclusive. A system can be an online, model-based, supervised learning&nbsp;system.</li>
+</ol>
+</li>
+<li>Sources of Error<ol>
+<li>Sampling noise – the data sample is too small (nonrepresentative data is included as a result of&nbsp;chance)</li>
+<li>Sampling bias – Lots of data, but it is nonrepresentative due to a flawed sampling&nbsp;method.</li>
+</ol>
+</li>
+</ol>
+            </div><!-- /.entry-content -->
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+  <h4>Pages</h4>
+
+  <ul>
+
+    <li ><a href="https://www.hoopyeah.com/pages/about.html">About</a></li>
+  
+  <h4>Categories</h4>
+  <ul class="blank">
+    <li><a href="https://www.hoopyeah.com/category/catholic.html">Catholic</a></li>
+    <li><a href="https://www.hoopyeah.com/category/science.html">Science</a></li>
+  </ul>
+
+
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/hoopyeah" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="https://www.hoopyeah.com/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="https://www.hoopyeah.com/theme/js/libs/gumby.min.js"></script>
+  <script src="https://www.hoopyeah.com/theme/js/plugins.js"></script>
+</body>
+</html>
