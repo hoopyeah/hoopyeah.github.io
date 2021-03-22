@@ -84,11 +84,6 @@ def simple_serve(c):
         httpd.serve_forever()
 
 @task
-def simple_publish(c):
-    pelican_run('-o .. -s {settings_base}'.format(**CONFIG))
-    # pelican content -o .. -s pelicanconf.py
-
-@task
 def reserve(c):
     """`build`, then `serve`"""
     build(c)

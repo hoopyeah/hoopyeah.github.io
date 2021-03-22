@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-        <title>Notes on 3B1B ML Videos</title>
+        <title>Grab Bag</title>
         <meta charset="utf-8" />
 
 
@@ -50,128 +50,79 @@
 
             <header>
               <h2 class="entry-title">
-                <a href="/notes-on-3b1b-ml-videos.html" rel="bookmark"
-                   title="Permalink to Notes on 3B1B ML Videos">Notes on <span class="caps">3B1B</span> <span class="caps">ML</span>&nbsp;Videos</a></h2>
+                <a href="/grab-bag.html" rel="bookmark"
+                   title="Permalink to Grab Bag">Grab&nbsp;Bag</a></h2>
            
             </header>
             <footer class="post-info">
-              <abbr class="published" title="2021-02-23T11:26:00-05:00">
-                Tue 23 February 2021
+              <abbr class="published" title="2021-03-21T11:26:00-04:00">
+                Sun 21 March 2021
               </abbr>
               <address class="vcard author">By 
                 <a class="url fn" href="/author/cody-fernandez.html"> Cody Fernandez</a>
               </address>
             </footer><!-- /.post-info -->
             <div class="entry-content">
-              <h1>3Blue1Brown video&nbsp;notes</h1>
-<p>I watch the four-episode playlist on Youtube. Here&#8217;s what I felt compelled to write&nbsp;down.</p>
-<h2>Episode&nbsp;1</h2>
+              <h1>Neural Networks and Deep&nbsp;Learning</h1>
 <ul>
-<li>Neuron - a thing that holds a&nbsp;number</li>
-<li>28x28 pixels = 784&nbsp;neurons</li>
-<li>value of neuron is its&nbsp;&#8220;activation&#8221;</li>
-<li>these 784 neurons make up hte first layer of the&nbsp;network</li>
-<li>last layer is 10 neurons, one for each digit&nbsp;choice</li>
-<li>activation of these neuorons is 0 -&gt; 1, likelihood digit is that&nbsp;number</li>
-<li><span class="dquo">&#8220;</span>Hidden layers&#8221; -&gt; the black&nbsp;box</li>
-<li>2 layers of 16 neurons - arbitrary, lots of room to experiment with&nbsp;structure</li>
-<li>it&#8217;s all edge detection (not acutally&nbsp;true)</li>
-<li>what parameters should the network&nbsp;have?</li>
-<li>assign weights to each connection from one layer to the next, then compute the weighted sum of activations per&nbsp;neuron</li>
-<li>activations should be between zero and&nbsp;one</li>
+<li>The weight implies the strength of the connection across&nbsp;neurons</li>
+<li>A neural networks can be viewed as a computational graph of elementary units, (such as least squares regression of logistic regression) where the connection of these units are combined in a structured way to enable a more complex function of the input&nbsp;data.</li>
+<li>Two key advantages of NNs:<ul>
+<li>Provides a higher-level abstraction of expressing semantic insights about data domains by architectural design choices in the computational&nbsp;graph.</li>
+<li>Adding or removing neurons from the achitecture provides a simple way to adjust the complexity of a&nbsp;model.</li>
 </ul>
-<p>Sigmoid or logistic&nbsp;curve:
-</p>
-<div class="math">$$
-\sigma(x)=\frac{1}{1+e^{x}}
-$$</div>
-<ul>
-<li>so the activation is basically a measure of how positive the relevant weighted sum&nbsp;is</li>
-<li>bias against inactivity, so add bias to weighted sum before applying the sigmoid&nbsp;function</li>
-<li>learning -&gt; finding the right weights and&nbsp;biases</li>
-<li>
-<p><span class="dquo">&#8220;</span>What are the weights and biases doing?&#8221;
-<div class="math">$$
-a^{(1)}=\sigma(Wa^{(0)}+b)
-$$</div>
-</p>
-</li>
-<li>
-<p>neuron - actually, a function: inputs are the previous neurons, output is one&nbsp;number</p>
-</li>
-<li>sigmoid -&gt; old school. ReLU -&gt; easier to train. <span class="math">\(ReLU(a)=max(0,a)\)</span>. Rectified Linear&nbsp;Unit.</li>
-</ul>
-<h2>Episode&nbsp;2</h2>
-<ul>
-<li>cost function - taken set of weights and biases as input, averages to single number for&nbsp;output</li>
-<li>find the minimum of the cost&nbsp;function</li>
-<li>no guarantee on local&nbsp;minimum</li>
-<li>gradient - direction of steepest&nbsp;descent</li>
-<li>length of gradient also reveals&nbsp;steepness</li>
-<li>take <span class="math">\(-\nabla&nbsp;C(\vec{W})\)</span> </li>
-<li>learning is just minimizing a cost&nbsp;function</li>
-<li>also cost function should be&nbsp;smooth</li>
-<li>gradient dscent -&gt; sign of each weigt tells direction of change, value tells magnitude of&nbsp;change</li>
-<li>old tech -&gt; multilayer&nbsp;peceptron</li>
-</ul>
-<h2>Episode&nbsp;3</h2>
-<ul>
-<li>backpropagation - computes the&nbsp;gradient</li>
-<li>change weights in proportion to&nbsp;activations</li>
-<li>change activations in proporiton to&nbsp;weights</li>
-<li>starting from outputs, sum desired changes on the preceding netowek layer for each neuron of the output&nbsp;layer</li>
-<li>Recursively apply across layers, average over all&nbsp;data </li>
-<li>stochastic gradient descent - gd in&nbsp;mini-batches</li>
-</ul>
-<h2>Episode&nbsp;4</h2>
-<ul>
-<li>For one example (e.g. image):
-<div class="math">$$
-\begin{array}{rcl} 
-Cost C_{0}(\ldots) &amp; = &amp; {(a^{(L)}-y)}^2 \\
-z^{L} &amp; = &amp; w^{L}a^{l-1}+b^{L}\\
-a^{L} &amp; = &amp; \sigma(z^{L})
-\end{array} 
-$$</div>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="err">{</span>
-<span class="err">    w  a  b</span>
-<span class="err">    |__|__|</span>
-<span class="err">       |</span>
-<span class="err">       z</span>
-<span class="err">       |</span>
-<span class="err">    y__a</span>
-<span class="err">       |</span>
-<span class="err">       C</span>
-<span class="err">}</span>
-</code></pre></div>
-
+<h1>Brownlee</h1>
+<h2>https://machinelearningmastery.com/convolutional-layers-for-deep-learning-neural-networks/</h2>
 <ul>
-<li>y is desired&nbsp;output</li>
-<li>how sensitive is the cost function to small changes in&nbsp;weights?</li>
+<li>A convolution is the simple application of a filter to an input that results in an&nbsp;activation.</li>
+<li>CNNs apply a filter to an input to create a feature map that summarizes the presence of detected features in the&nbsp;input.</li>
+<li>Features are abstracted ot higher orders as the depth of hte network is&nbsp;increased. </li>
 </ul>
-<div class="math">$$
-\begin{array}{rcl}
-\frac{\partial C_0}{\partial w^{(L)}} &amp; = &amp;  \frac{\partial z^{(L)}}{\partial w^{(L)}} \frac{\partial a^{(L)}}{\partial z^{(L)}} \frac{\partial C_0}{\partial a^{(L)}}\\
-\frac{\partial C_0}{\partial w^{(L)}} &amp; = &amp; 2(a^{(L)}-y)\\
-\frac{\partial a^{(L)}}{\partial z^{(L)}} &amp; = &amp; \sigma^{\prime} (z^{(L)})\\
-\frac{\partial z^{(L)}}{\partial w^{(L)}} &amp; = &amp; a^{(L-1)}
-\end{array}
-$$</div>
+<h1>Saha</h1>
+<h2>https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53</h2>
 <ul>
-<li>That last one depends on the strength of the previous&nbsp;neuron</li>
+<li>Conventionally, the first ConvLayer is responsible for capturing the low-level features such as edges, color, and gradient&nbsp;orientation.</li>
+<li>Max pooling performs better than average pooling. It de-noises and reduces dimensionality. Average pooling only reduces dimensionality, maintainin&nbsp;noise.</li>
+<li>The Convolutional Layer and Pooling Layer compine to form the <em>i</em>-th layer of a <span class="caps">CNN</span>.</li>
+<li>Add a fully-connected layer (multi-level perceptron), flatten the image to a column, feed it into a feed-forward <span class="caps">NN</span>, and apply backpropagation to every iteration of training. Softmax classification layer at&nbsp;end.</li>
 </ul>
-<div class="math">$$
-\frac{\partial C}{\partial w^{(L)}} = \frac{1}{n} \sum_{k = 1}^{n-1} \frac{\partial C_k}{\partial w^{(L)}}\\
-\begin{align}
-   \nabla C  &amp;= \begin{bmatrix}
-                \frac{\partial C}{\partial w^{(1)}} \\
-                \vdots \\
-                \frac{\partial C}{\partial w^{(L)}}
-                \end{bmatrix}
-\end{align}
-$$</div>
+<h1>Kilcher</h1>
+<h2>https://www.youtube.com/watch?v=TrdevFK_am4</h2>
+<h3>https://arxiv.org/abs/2010.11929</h3>
+<ul>
+<li>Transformers operate on&nbsp;sets</li>
+<li>Attention is the pairwise inner product between each pair of tokens (quadratic operation)<ul>
+<li>Limitation of transformers (<span class="math">\(500\)</span> tokens, <span class="math">\(500^2\)</span>&nbsp;products) </li>
+</ul>
+</li>
+<li>Patch + positional embedding <ul>
+<li>More sophisticated embeddings&nbsp;unnecessary</li>
+</ul>
+</li>
+<li>You can already pay attention to far away thing at lower layers with&nbsp;transformers</li>
+<li>First, LTSMs with attention, then transformers replace those for <span class="caps">NLP</span>, now transformers will replace&nbsp;CNNs?</li>
+<li>A feed-forward <span class="caps">NN</span> can learn any&nbsp;function</li>
+<li><span class="caps">CNN</span> has good inductive&nbsp;priors</li>
+<li><span class="caps">LSTM</span> good inductive prior for <span class="caps">NLP</span><ul>
+<li>Like&nbsp;reading</li>
+</ul>
+</li>
+<li>Inductive priors (or inductive biases)<ul>
+<li>To bias the&nbsp;estimator</li>
+</ul>
+</li>
+<li>but with enough data, an unbiased model is&nbsp;better</li>
+<li>Transformers are more general than MLPs<ul>
+<li>learns the filters without input&nbsp;bias</li>
+</ul>
+</li>
+<li>There are inductive biases in transformers<ul>
+<li>Skip connectors are the next to&nbsp;go.</li>
+</ul>
+</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
