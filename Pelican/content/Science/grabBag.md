@@ -11,23 +11,19 @@ Summary: Collecting the notes I took from __Neural Networks and Deep Learning__ 
     - Provides a higher-level abstraction of expressing semantic insights about data domains by architectural design choices in the computational graph.
     - Adding or removing neurons from the achitecture provides a simple way to adjust the complexity of a model.
 
-# Brownlee
-## https://machinelearningmastery.com/convolutional-layers-for-deep-learning-neural-networks/
+# [Brownlee](https://machinelearningmastery.com/convolutional-layers-for-deep-learning-neural-networks/)
 - A convolution is the simple application of a filter to an input that results in an activation.
 - CNNs apply a filter to an input to create a feature map that summarizes the presence of detected features in the input.
 - Features are abstracted ot higher orders as the depth of hte network is increased. 
 
-# Saha
-## https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53 
+# [Saha](https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53) 
 - Conventionally, the first ConvLayer is responsible for capturing the low-level features such as edges, color, and gradient orientation.
 - Max pooling performs better than average pooling. It de-noises and reduces dimensionality. Average pooling only reduces dimensionality, maintainin noise.
 - The Convolutional Layer and Pooling Layer compine to form the *i*-th layer of a CNN.
 - Add a fully-connected layer (multi-level perceptron), flatten the image to a column, feed it into a feed-forward NN, and apply backpropagation to every iteration of training. Softmax classification layer at end.
 
-# Kilcher
-## https://www.youtube.com/watch?v=TrdevFK_am4
-### https://arxiv.org/abs/2010.11929
-
+# [Kilcher](https://www.youtube.com/watch?v=TrdevFK_am4)
+### [Paper](https://arxiv.org/abs/2010.11929)
 - Transformers operate on sets
 - Attention is the pairwise inner product between each pair of tokens (quadratic operation)
     - Limitation of transformers ($500$ tokens, $500^2$ products) 

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>Answers to Chapter 10</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/pygment.css" />
+
+        <script src="/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="/">Hoopyeah <strong>Jesus Christ is King of the Universe</strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="/">Home</a></li>
+
+                <li><a href="/pages/about.html">About</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="/answers-to-chapter-10.html" rel="bookmark"
+                   title="Permalink to Answers to Chapter 10">Answers to Chapter&nbsp;10</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2021-03-24T20:40:00-04:00">
+                Wed 24 March 2021
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="/author/cody-fernandez.html"> Cody Fernandez</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h1>Chapter&nbsp;10</h1>
+<ul>
+<li>Artificial neuron<ul>
+<li>1 or more binary&nbsp;inputs</li>
+<li>1 binary&nbsp;output</li>
+<li>activates output when more than a certain number of its inputs are&nbsp;active</li>
+<li>a neuron is activated when at least 2 inputs are&nbsp;active</li>
+</ul>
+</li>
+<li>A network of artificial neurons can compute any logical&nbsp;proposition</li>
+<li>Perceptron based on<ul>
+<li>threshold logic unit (<span class="caps">TLU</span>)&nbsp;or</li>
+<li>linear threshold unit (<span class="caps">LTU</span>)</li>
+</ul>
+</li>
+<li><span class="caps">TLU</span><ul>
+<li>inputs and outputs are numbers<ul>
+<li>each input connection has an associated&nbsp;weight</li>
+</ul>
+</li>
+<li>computes a weighted sum of its inputs<ul>
+<li><span class="math">\(z=w_1x_1 + w_2x_2+ \cdots + x_nw_n =&nbsp;\vec{x}^T\vec{w}\)</span></li>
+</ul>
+</li>
+<li>then applies a step function and outputs result<ul>
+<li><span class="math">\(h_w(\vec{x})=step(z)\)</span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Step functions
+<div class="math">$$heaviside(z) = \begin{cases} 0, &amp; \mbox{if } z&gt;0 \\ 1, &amp; \mbox{if } z&gt;1\end{cases}$$</div>
+<div class="math">$$sgn(z) = \begin{cases} -1, &amp; \mbox{if }z&lt;0 \\ 0, &amp; \mbox{if } z=0 \\ 1 &amp; \mbox{if } z&gt;0\end{cases}$$</div>
+</li>
+<li>Perceptron is composed of a single layer of TLUs, with each <span class="caps">TLU</span> connected to all the&nbsp;inputs</li>
+<li>Compute the outputs of a fully connected layer<ul>
+<li><span class="math">\(h_{\vec{w},\vec{b}}(\vec{X})=\phi(\vec{X}\vec{w}+\vec{b})\)</span><ul>
+<li><span class="math">\(\vec{X}\)</span>: input&nbsp;features</li>
+<li><span class="math">\(\vec{w}\)</span>: weight matrix (of all connection&nbsp;weights)</li>
+<li><span class="math">\(\vec{b}\)</span>: bias vector (one bias term per&nbsp;neuron)</li>
+<li><span class="math">\(\phi\)</span>: activation&nbsp;function</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Hebb&#8217;s rule: &#8220;Cells that fire together, wire together&#8221;, or the connection weight between two neurons tends to increase when they fire&nbsp;simultaneously.</li>
+<li><span class="math">\(w_{i,y}^{(next step)}=w_{i,j}+\eta(y_j-\hat{y}_j)x_i\)</span> - Perceptron learning rule (weight update)<ul>
+<li><span class="math">\(w_{i,j}\)</span>: connection weight between <span class="math">\(i^{th}\)</span> input neuron and <span class="math">\(j^{th}\)</span> output&nbsp;neuron</li>
+<li><span class="math">\(x_i\)</span>: <span class="math">\(i^{th}\)</span> input value of current training&nbsp;instance</li>
+<li><span class="math">\(\hat{y}_j\)</span>: output of <span class="math">\(j^{th}\)</span> output neuron for current training&nbsp;instance</li>
+<li><span class="math">\(y_i\)</span>: target output of <span class="math">\(j^{th}\)</span> output neuron for current training&nbsp;instance</li>
+<li><span class="math">\(\eta\)</span>: learning&nbsp;rate</li>
+</ul>
+</li>
+<li>Perceptrons kinda suck - they can&#8217;t even <span class="caps">XOR</span></li>
+<li>Multilayered Perceptrons (MLPs)<ul>
+<li>stacking multiple perceptrons in&nbsp;layers</li>
+<li>can totally <span class="caps">XOR</span></li>
+<li>Structure:<ul>
+<li>1 input layer&nbsp;(passthrough)</li>
+<li>1 or more hidden layers (of TLUs) [lower layers <span class="math">\(\rightarrow\)</span> upper&nbsp;layers]</li>
+<li>1 output layer (of&nbsp;TLUs)</li>
+</ul>
+</li>
+<li>every layer except output has a bias neuron and is fully connected to the next&nbsp;layer</li>
+<li>feedforward neural network: signal flows in one direction, from input to&nbsp;output</li>
+<li>deep neural net: <span class="caps">ANN</span> with a &#8220;deep&#8221; stack of hidden layers<ul>
+<li>how deep? 2 or dozens&nbsp;(lol)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Backpropagation: Gradient decent with one forward pass and one backward pass. It computes the gradient of hte network&#8217;s error with regard to every single model parameter. with these gradients, it performs another gradient descent, and repeats until it converges to the soluion.<ul>
+<li>autodiff - automatic differentiation <span class="math">\(\rightarrow\)</span> automatically computing gradients. Backpropagation uses &#8220;reverse-mode autodiff&#8221; <span class="math">\(\rightarrow\)</span> see Appendix&nbsp;D</li>
+</ul>
+</li>
+<li>In detail:<ol>
+<li>One minibatch at a time. Go through the full training set multiple times. Each pass is an&nbsp;&#8220;epoch&#8221;</li>
+<li>Pass a minibatch to the input layer. Compute the output of all neurons. Pass to the next layer. This is the &#8220;forward pass&#8221;. We have preserved all intermediate results along the&nbsp;way</li>
+<li>Measure the network&#8217;s output error (use a loss&nbsp;function)</li>
+<li>Compute each output connection&#8217;s contribution to the error using hte chain&nbsp;rule</li>
+<li>Measure the layer below&#8217;s error contrubutions to the current layer using the chaing rule. This measure the error gradient across all connections weights as we propagate backward through the network (backpropagation, the &#8220;backward&nbsp;pass&#8221;).</li>
+<li>Perform Gradient Descent using these error gradients to adjust all the network&#8217;s conenction weights.
+Summary: <span class="caps">FOR</span> each training instance, make a prediction (forward pass) and measure error, go through each layer in reverse to measure error contribution of of each connection (reverse pass), tweak connection weights to reduce error (Gradient&nbsp;Descent).</li>
+</ol>
+</li>
+<li><strong>Initialize all hidden layers&#8217; connection weights&nbsp;randomly</strong></li>
+<li>Change <span class="caps">MLP</span> activation function to something with a well-defined non-zero derivative everywhere. Choices include:<ul>
+<li>logistic (sigmoid):<ul>
+<li><span class="math">\(\sigma(z)=\frac{1}{1+e^{-z}}\)</span>    <span class="math">\([0 \rightarrow&nbsp;1]\)</span></li>
+</ul>
+</li>
+<li>hyperbolic tangent:<ul>
+<li><span class="math">\(\tanh(z)=2\sigma(2z)-1\)</span>    <span class="math">\([-1 \rightarrow&nbsp;1]\)</span></li>
+</ul>
+</li>
+<li>Rectified Linear Unit (ReLU):<ul>
+<li><span class="math">\(ReLU(z)=max(0,z)\)</span>    <span class="math">\([0 \rightarrow&nbsp;z]\)</span></li>
+<li>fast to compute, current&nbsp;default</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>We need activation functions to introduce nonlinearities <ul>
+<li>Any large-enough <span class="caps">DNN</span> can approximate any continuous&nbsp;function</li>
+</ul>
+</li>
+<li>Regression <span class="caps">MLP</span> - output continuous<ul>
+<li># input neurons <span class="math">\(\rightarrow\)</span> one per input&nbsp;feature</li>
+<li># hidden layers <span class="math">\(\rightarrow\)</span> 1-5&nbsp;typically</li>
+<li># neurons per hidden layer <span class="math">\(\rightarrow\)</span> 10-100&nbsp;typically</li>
+<li># output neurons <span class="math">\(\rightarrow\)</span> 1 per prediction&nbsp;dimension</li>
+<li>Hidden activation <span class="math">\(\rightarrow\)</span> ReLU (or <span class="caps">SELU</span>)</li>
+<li>Output activation <span class="math">\(\rightarrow\)</span> None, ReLU/Softmax (positive outputs), logistic/tanh (bounded&nbsp;ouptputs)</li>
+<li>Loss function <span class="math">\(\rightarrow\)</span> <span class="caps">MSE</span> or <span class="caps">MAE</span>/Huber (if&nbsp;outliers)</li>
+</ul>
+</li>
+<li>Softplus: (smooth variant of ReLU)<ul>
+<li><span class="math">\(softplus(z)=\log(1+e^z)\)</span>    <span class="math">\([0 \rightarrow&nbsp;z]\)</span></li>
+</ul>
+</li>
+<li>Classification&nbsp;MLPs</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">Hyperparameter</th>
+<th align="right">Binary</th>
+<th align="right">Multilabel Binary</th>
+<th align="right">Multiclass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"># output neurons</td>
+<td align="right">1</td>
+<td align="right">1 per label</td>
+<td align="right">1 per class</td>
+</tr>
+<tr>
+<td align="left">Output layer activation</td>
+<td align="right">Logistic</td>
+<td align="right">Logistic</td>
+<td align="right">Softmax</td>
+</tr>
+<tr>
+<td align="left">Loss function</td>
+<td align="right">cross entropy</td>
+<td align="right">cross entropy</td>
+<td align="right">cross entropy</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>binary classification: single output neuron, logistic activation, 0 or&nbsp;1</li>
+<li>multilabel binary classification: X output neurons, logistic activation, 0 or 1, any combination of output 0&#8217;s and 1&#8217;s&nbsp;possible</li>
+<li>multiclass classification: one output neuron per class, softmax activation: ensures all probabilities use <span class="math">\(0\rightarrow1\)</span> and add up to 1 (required if classes are&nbsp;exclusive)</li>
+<li>Fine-tuning <span class="caps">NN</span>&nbsp;Hyperparameters</li>
+<li>perform K-fold cross-validation to find best learning rate, number of hidden layers, and number of neurons per hidden layer by testing all&nbsp;combinations.</li>
+<li>Or use a hyperparameter optimizing&nbsp;toolkit</li>
+<li>Perhaps evolutionary algorithms are replacing gradient descent? (Deep Neuro evolution by&nbsp;Uber).</li>
+<li>Number of Hidden&nbsp;Layers</li>
+<li>deep networks have much higher &#8220;parameter efficiency&#8221;: modeling complex functions using exponentially fewer neurons, thus better performance using exponentialy fewer neurons, thus better performance with same training&nbsp;data </li>
+<li>real-world data is structured. lower-level hidden layers model low-level structures, and increaseingly higher layers models increasingly higher-level structures (increasingly abstract structures as&nbsp;well).</li>
+<li>Transfer learning - taking your pre-trained lower layers and applying them to a new&nbsp;problem.</li>
+<li>Start with 1 or 2 hidden layers. Or just ramp up the hidden layers until you start overfitting the training data. Or do transfer learning with parts of an existing&nbsp;model.</li>
+<li>Number of Neurons per hidden&nbsp;layer</li>
+<li>input and output layer neuron numbers dependent on&nbsp;problem</li>
+<li>pyramid lower <span class="math">\(\rightarrow\)</span> higher layers? Nope, old. and adds more hyperparameters to tune (neurons per&nbsp;layer)</li>
+<li>Same on all layers? Yes. One hyperparameter to tune, no change in&nbsp;performance.</li>
+<li>Okay, maybe have first hidden layer larger than&nbsp;others</li>
+<li>Use &#8220;stretch pants&#8221; approach: Pick a model with more layers and neurons than necessary, then use early stopping and regularization techniques to avoid&nbsp;overfitting.</li>
+<li><span class="math">\(\star\)</span> Almost always better to increase number of layers than to increase number of&nbsp;neurons.</li>
+<li>Learning&nbsp;Rate</li>
+<li>the most important&nbsp;hyperparameter</li>
+<li>optimal learning rate is half the max learning rate. (the learning rate above which the training algorithm&nbsp;diverges).</li>
+<li>Start low and go up, training the model for a few hundred iterations: <span class="math">\(\exp^{\frac{\log(10^6)}{500}}\)</span> goes from <span class="math">\(10^{-5}\)</span> to <span class="math">\(10\)</span> in <span class="math">\(500\)</span> iterations. Plot loss as log-scale function of learning rate, see the turning point where loss starts to climb again, pick the learning rate as <span class="math">\(\frac{1}{10}\)</span> of that turning point. Then retrain with this good learning&nbsp;rate.</li>
+<li>Or use a different learning rate technique (<span class="caps">TBD</span>)</li>
+<li>Optimizers</li>
+<li>Use a different optimizer (<span class="caps">TBD</span>)</li>
+<li>Batch&nbsp;size</li>
+<li>Nerd&nbsp;fight!</li>
+<li>
+<ol>
+<li>Use the biggest batch possible, with <span class="caps">GPU</span> <span class="caps">RAM</span> as limiting&nbsp;factor</li>
+<li>this could lead to training instabilities (especially early in training) and a generalization&nbsp;gap</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Use small batches (2 to&nbsp;32)</li>
+<li>better models in less training&nbsp;time</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Use a large batch size, learning rate&nbsp;warmup</li>
+<li>short traiing time, no generalization&nbsp;gap</li>
+<li>if it sucks, just use small batches&nbsp;instead</li>
+</ol>
+</li>
+<li>Activation&nbsp;function</li>
+<li>when in doubt,&nbsp;ReLU</li>
+<li>Number of&nbsp;interations</li>
+<li>Don&#8217;t bother, just use early&nbsp;stopping</li>
+<li><span class="math">\(\star\)</span> Check out 2018 Leslie Smith &#8220;Disciplined&nbsp;Approach&#8230;&#8221;</li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            </div><!-- /.entry-content -->
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+  <h4>Pages</h4>
+
+  <ul>
+
+    <li ><a href="/pages/about.html">About</a></li>
+  
+  <h4>Categories</h4>
+  <ul class="blank">
+    <li><a href="/category/catholic.html">Catholic</a></li>
+    <li><a href="/category/science.html">Science</a></li>
+  </ul>
+
+
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/hoopyeah" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="/theme/js/libs/gumby.min.js"></script>
+  <script src="/theme/js/plugins.js"></script>
+</body>
+</html>
