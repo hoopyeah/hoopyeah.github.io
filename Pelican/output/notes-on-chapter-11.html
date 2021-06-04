@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>Notes on Chapter 11</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/pygment.css" />
+
+        <script src="/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="/">Hoopyeah <strong>Jesus Christ is King of the Universe</strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="/">Home</a></li>
+
+                <li><a href="/pages/about.html">About</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="/notes-on-chapter-11.html" rel="bookmark"
+                   title="Permalink to Notes on Chapter 11">Notes on Chapter&nbsp;11</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2021-04-28T20:40:00-04:00">
+                Wed 28 April 2021
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="/author/cody-fernandez.html"> Cody Fernandez</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h1>Chapter&nbsp;11</h1>
+<ul>
+<li>Problems that occur when training a <span class="caps">DNN</span>:<ul>
+<li>Vanishing gradients: gradients shrink when flowing backward through the <span class="caps">DNN</span></li>
+<li>Exploding gradients: gradients grow when flowing backward through the <span class="caps">DNN</span></li>
+<li>Both make it lower layers difficult to&nbsp;train</li>
+</ul>
+</li>
+<li>You might lack data or it might be too costly to&nbsp;label</li>
+<li>Training may be extremely&nbsp;slow</li>
+<li>Models with millions of parameters severely risk overfitting, especially if there aren&#8217;t enough training instances or if they&#8217;re too&nbsp;noisy</li>
+<li>Vanishing gradients: gradients get smaller and smaller as we progress to the lower layers. The hte lower layers weights don&#8217;t change, thus training never converges to a good&nbsp;solution. </li>
+<li>exploding gradients: the opposite, weights explode and Gradient Descent diverges&nbsp;instead</li>
+<li>unstable gradients: different layers of hte <span class="caps">DNN</span> learn at widely different&nbsp;speeds</li>
+<li>For signal to flow properly, Glorot and He argue:<ul>
+<li>variance of the outputs of each layer must equal the variance of its&nbsp;inputs</li>
+<li>gradients must have equal variance before and flowing through a layer in the reverse&nbsp;direction</li>
+<li>not actually possible unless a layer has equal numbers of inputs and neurons (fan-in and&nbsp;fan-out)</li>
+<li>compromise: initialize randomly where <span class="math">\(fan_{avg}=\frac{fan_{in}+fan_{out}}{2}\)</span><ul>
+<li>called Xavier initialization or Glorot&nbsp;initialization</li>
+<li>when using logistic activation function:<ul>
+<li>Normal distribution with zero-mean and variance <span class="math">\(\sigma^2\)</span>: <span class="math">\(\frac{1}{fan_{avg}}\)</span></li>
+<li>Or a uniform distribution between <span class="math">\(-r \rightarrow +r\)</span> with <span class="math">\(r=\sqrt{\frac{3}{fan_{avg}}}\)</span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>LeCun initialization: <span class="math">\(\sigma^2 = \frac{1}{fan_{in}}\)</span><ul>
+<li>equivalent to Glorot when <span class="math">\(fan_{in}=fan_{out}\)</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Different strategies for different activation&nbsp;functions</p>
+<table>
+<thead>
+<tr>
+<th align="left">Initialization</th>
+<th align="right">Activation Functions</th>
+<th align="right"><span class="math">\(\sigma^2\)</span> (Normal)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Glorot</td>
+<td align="right">None, tanh, logisitic, softmax</td>
+<td align="right"><span class="math">\(\frac{1}{fan_{avg}}\)</span></td>
+</tr>
+<tr>
+<td align="left"><span class="caps">HE</span></td>
+<td align="right">ReLU and variants</td>
+<td align="right"><span class="math">\(\frac{2}{fan_{in}}\)</span></td>
+</tr>
+<tr>
+<td align="left">LeCun</td>
+<td align="right"><span class="caps">SELU</span></td>
+<td align="right"><span class="math">\(\frac{1}{fan_{in}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>ReLU computes fast and does not saturate for positive values<ul>
+<li>problem: &#8220;dying ReLUS&#8221;. Given a large learning rate, neurons just output zero and never stop outputting zeroes, since the gradient of ReLU is 0 for negative&nbsp;input.</li>
+</ul>
+</li>
+<li>Leaky ReLU: <span class="math">\(ReLU_{\alpha}(z)=max(\alpha z, z)\)</span><ul>
+<li><span class="math">\(\alpha\)</span> defines &#8220;leakage&#8221;. Slope of function for <span class="math">\(z&lt;0\)</span>, typically 0.01. Ensures leaky ReLUs never&nbsp;die. </li>
+<li>Leaky ReLUs always outperform strict&nbsp;ReLU</li>
+<li>Big leakage (<span class="math">\(\alpha =0.2)\)</span> outperformed by small leakage (<span class="math">\(\alpha=0.01\)</span>)</li>
+</ul>
+</li>
+<li>Randomized leaky ReLU (RReLU): <span class="math">\(\alpha\)</span> is random within a given range during training and fit to an average value during testing. Performed well and acted as a&nbsp;regularizer.</li>
+<li>Parametric Leaky ReLU (PReLU): let <span class="math">\(\alpha\)</span> become a parameter modifiable by backpropagation. Strongly outperforms ReLU on large datasets, overfits small&nbsp;datasets.</li>
+<li><span class="caps">ELU</span> (exponential linear unit): outperformed ReLU variants
+<div class="math">$$
+ELU_{\alpha}(z) = \begin{cases} \alpha (\exp^z-1), &amp; \mbox{if } z&lt;0 \\ z, &amp; \mbox{if } z&gt;0 \end{cases}
+$$</div>
+</li>
+<li>Differences from ReLU:<ul>
+<li>goes negative for <span class="math">\(z&lt;0\)</span>. Average output thus closer to 0, alleviating vanishing gradient problem, <span class="math">\(\alpha\)</span> usually equals&nbsp;1.</li>
+<li>nonzero gradient for <span class="math">\(z&lt;0\)</span>, avoids dead&nbsp;neurons</li>
+<li>For <span class="math">\(\alpha=1\)</span>, function is smooth everywhere, including around <span class="math">\(z=0\)</span>. This helps speed up gradient&nbsp;descent.</li>
+<li>Slower to compute than ReLU: Faster convergence rate only partially&nbsp;compensates.</li>
+</ul>
+</li>
+<li>Scaled <span class="caps">ELU</span> (<span class="caps">SELU</span>)<ul>
+<li>build a <span class="caps">NN</span> of exclusively dense layers, have all hidden layers use <span class="caps">SELU</span>, then network will self-normalize: output of each layer will tend ot preserne a mean of 0 and standard deviation of 1 during training. Solves vanishing/exploding gradients. Thus <span class="caps">SELU</span> outperforms other activations in these&nbsp;nets.</li>
+<li>Conditions for self-normalization:<ul>
+<li>input must be standardized: 0 mean and 1 standard&nbsp;deviation.</li>
+<li>initialize hidden layer weights with LeCun&nbsp;normalization</li>
+<li>network architecture must be&nbsp;sequential</li>
+<li>(maybe) all layers must be&nbsp;dense</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>In general, <span class="caps">SELU</span> &gt; <span class="caps">ELU</span> &gt; leaky ReLU &gt; ReLU &gt; tanh &gt;&nbsp;logistic</li>
+<li>care about runtime latency? pick leaky&nbsp;ReLU</li>
+<li>network overfitting?&nbsp;RReLU</li>
+<li>huge training set?&nbsp;PReLU</li>
+<li>speed?&nbsp;ReLU</li>
+<li>Batch Normalization<ul>
+<li>vanishing/exploding gradient can still come back during&nbsp;training</li>
+<li>add an operation before/after the activation function of each hidden layer<ul>
+<li>this operation: zero-centers and normalizes each input, then scales and shifts the&nbsp;result</li>
+<li>this operation: lets the model learn the optimal scale and mean of each of the layers&nbsp;inputs</li>
+</ul>
+</li>
+<li>If you add a <span class="caps">BN</span> layer as the first layer of your <span class="caps">NN</span>, the <span class="caps">BN</span> will approximately standardize your training&nbsp;set.</li>
+<li>algo estimates each inputs&#8217; mean and standard deviation by evaluating the mean and standard deviation of the input over the current mini-batch. In order to zero-center and normalize the&nbsp;inputs.</li>
+<li>Algorithm<ol>
+<li><span class="math">\(\vec{\mu}_{B} = \frac{1}{m_B} \sum_{i=1}^{m_B}&nbsp;\vec{x}^{(i)}\)</span></li>
+<li><span class="math">\(\vec{\sigma}_{B}^2=\frac{1}{m_B}\sum_{i=1}^{m_B}(\vec{x}^{(i)}-\vec{u}_{B})^2\)</span></li>
+<li><span class="math">\(\hat{\vec{x}}^{(i)}=\frac{\vec{x}^{(i)}-\vec{\mu}_B}{\sqrt{\vec{\sigma}_B^2+\epsilon}}\)</span></li>
+<li><span class="math">\(\vec{z}^{(i)}=\vec{\gamma}\otimes\hat{\vec{x}}^{(i)}+\vec{\beta}\)</span></li>
+</ol>
+</li>
+<li><span class="math">\(\vec{\mu}_B\)</span>: vector of input means, evaluated over whole mini-batch&nbsp;B</li>
+<li><span class="math">\(\vec{\sigma}_B\)</span>: vector of input standard deviations evaluated over whole mini-batch&nbsp;B</li>
+<li><span class="math">\(m_B\)</span>: number of instances of mini-batch&nbsp;B</li>
+<li><span class="math">\(\hat{\vec{x}}^{(i)}\)</span>: vector of zero-centered and normalized inputs for instance <span class="math">\(i\)</span></li>
+<li><span class="math">\(\vec{\gamma}\)</span>: output scale parameter vector for&nbsp;layer</li>
+<li><span class="math">\(\otimes\)</span>: element-wise&nbsp;multiplication</li>
+<li><span class="math">\(\vec{\beta}\)</span>: output shift (offset) parameter vector per layer. Each input is offset by its corresponding shift&nbsp;parameter.</li>
+<li><span class="math">\(\epsilon\)</span>: tiny number to avoid division by zero (typically <span class="math">\(10^{-5}\)</span>). Called a smoothing&nbsp;term.</li>
+<li><span class="math">\(\vec{z}^{(i)}\)</span>: output of the <span class="caps">BN</span> operation. Rescaled and shifted version of the&nbsp;inputs.</li>
+<li>During training <span class="caps">BN</span> standardizes its inputs, then rescales and offsets&nbsp;them.</li>
+<li>During testing, final statistics are estimated using a moving average over the layer&#8217;s input means and standard deviations. <span class="math">\(\vec{\gamma}\)</span> and <span class="math">\(\vec{\beta}\)</span> are learned during backpropagation, and <span class="math">\(\vec{\mu}\)</span> and <span class="math">\(\vec{\sigma}\)</span> are estimated using an exponential moving&nbsp;average. </li>
+<li><span class="caps">BN</span> also acts as a&nbsp;regularizer.</li>
+<li>Fuse <span class="caps">BN</span> layer with previous layer (after training) to avoid runtime&nbsp;penalty.</li>
+<li>wall time (measuremd by clock on wall) will be shorter using <span class="caps">BN</span>. Though each epoch takes longer, solution will converge much&nbsp;faster.</li>
+<li>Hyperparameter &#8220;momentum&#8221; tweaks the running average <span class="math">\(\hat{\vec{v}}\)</span>: <span class="math">\(\hat{\vec{v}} \leftarrow \hat{\vec{v}} \times momentum + \hat{\vec{v}} \times (1-momentum)\)</span><ul>
+<li>0.9, 0.99, 0.999, (more 9s for larger datasets and smaller&nbsp;mini-batches) </li>
+</ul>
+</li>
+<li>hyperparameter &#8220;axis&#8221; determines which axis should be normalized.<ul>
+<li>default -1, meaning it will normalize the last axis using the weights and standard deviations of computed across other&nbsp;axes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Gradient Clipping - clip gradients so they never exceed some threshold. Mainly used in&nbsp;RNNs.</li>
+<li>Transfer Learning - reuse lower layers of an existing <span class="caps">NN</span> that addresses a similar task. <ul>
+<li>Does not work well with small dense networks. Works best with deep&nbsp;CNNs.</li>
+</ul>
+</li>
+<li>Unsupervised Pretraining<ul>
+<li>use an autoencoder or <span class="caps">GAN</span> first on unlabeled data, then reuse the lower layers in a different network with labelled training&nbsp;data.</li>
+</ul>
+</li>
+<li>Pretrain on auxiliary task<ul>
+<li>Train <span class="caps">NN</span> on similar labelled training data, reuse lower layers in actual&nbsp;task</li>
+</ul>
+</li>
+<li>self-supervised learning: automatically generate labels from teh data itself, then train <span class="caps">NN</span>. This is technically unsupervised learning since a human didn&#8217;t&nbsp;label.</li>
+<li>4 ways to speed up training<ol>
+<li>Good initilization strategy for connection&nbsp;weights</li>
+<li>Good activation&nbsp;function</li>
+<li>Batch&nbsp;Normalization</li>
+<li>Reuse lower layers of pretrained&nbsp;network</li>
+<li>Faster&nbsp;Optmiizer</li>
+</ol>
+</li>
+<li>Faster Optimizer<ul>
+<li>momentum optimization - start out slow, then quickly reach terminal&nbsp;velocity</li>
+<li>Gradient descent weight&nbsp;update:</li>
+<li><span class="math">\(\vec{\theta}\leftarrow - \eta \nabla_{\theta}&nbsp;J(\vec{\theta})\)</span></li>
+<li><span class="math">\(\vec{\theta}\)</span>:&nbsp;weights</li>
+<li><span class="math">\(J(\vec{\theta})\)</span>: loss&nbsp;function</li>
+<li><span class="math">\(\eta\)</span>: learning&nbsp;rate</li>
+<li>but now we&#8217;ll use the gradient for acceleration, not for&nbsp;speed</li>
+<li>Momentum algorithm<ol>
+<li><span class="math">\(\vec{m} \leftarrow \beta\vec{m}-\eta \nabla_\theta&nbsp;J(\vec{\theta})\)</span></li>
+<li><span class="math">\(\vec{\theta} \leftarrow \vec{\theta} + \vec{m}\)</span><ul>
+<li><span class="math">\(\vec{m}\)</span>: momentum&nbsp;vector</li>
+<li><span class="math">\(\beta\)</span>: momentum (like friction). 0 is high friction. 1 is low friciton. Typically&nbsp;0.9</li>
+</ul>
+</li>
+<li>At <span class="math">\(\beta = 0.9\)</span> this algorithm will go 10 times faster than Gradient&nbsp;Descent.</li>
+<li>Escapes plateaus much&nbsp;faster</li>
+<li>Useful in deep networks that lack Batch&nbsp;Normalization</li>
+<li>Can oscillate near minimum before stabilizing. Add friction to reduce oscillation&nbsp;time.</li>
+</ol>
+</li>
+<li>Nesterov Accelerated Gradient - almost always faster, measures the gradient of the cost function slightly ahead in the direction of momentum<ol>
+<li><span class="math">\(\vec{m} \leftarrow \beta\vec{m}-\eta \nabla_\theta J(\vec{\theta} + \beta&nbsp;\vec{m})\)</span></li>
+<li><span class="math">\(\vec{\theta} \leftarrow \vec{\theta} +&nbsp;\vec{m}\)</span></li>
+<li>ends up slightly closer to the&nbsp;optimum</li>
+</ol>
+</li>
+<li>Adagrad - scales down the gradient vector along the steepest dimensions to correct direction toward global optimum earlier<ol>
+<li><span class="math">\(\vec{s} \leftarrow \vec{s} + \nabla_{\theta} J(\vec{\theta}) \otimes \nabla_{\theta}&nbsp;J(\vec{\theta})\)</span></li>
+<li><span class="math">\(\vec{\theta} \leftarrow \vec{\theta} - \eta \nabla_\theta J(\vec{\theta}) \oslash&nbsp;\sqrt{\vec{s}+\epsilon}\)</span></li>
+<li><span class="math">\(\vec{s}\)</span>: vector of squares of&nbsp;gradients</li>
+<li><span class="math">\(\epsilon\)</span>: typically <span class="math">\(10^{-10}\)</span></li>
+<li>Adaptive learning rate: requires less tuning for <span class="math">\(\eta\)</span></li>
+<li>Never use AdaGrad on <span class="caps">NN</span></li>
+</ol>
+</li>
+<li>RMSProp - only accumulate the most recent gradients. <ol>
+<li><span class="math">\(\vec{s} \leftarrow \beta \vec{s} + (1-\beta)\nabla_{\theta} J(\vec{\theta}) \otimes \nabla_{\theta}&nbsp;J(\vec{\theta})\)</span></li>
+<li><span class="math">\(\vec{\theta} \leftarrow \vec{theta} - \eta \nabla_\theta J(\vec{\theta}) \oslash&nbsp;\sqrt{\vec{s}+\epsilon}\)</span></li>
+<li><span class="math">\(\beta\)</span>: decay rate, usually&nbsp;0.9</li>
+<li>preferred algo until&nbsp;Adam</li>
+</ol>
+</li>
+<li>Adam: adaptive moment estimation. keeps track of an exponentially decaying average of past gradients <span class="caps">AND</span> exponentially decaying average of past square gradients. <ol>
+<li><span class="math">\(\vec{m} \leftarrow \beta_1 \vec{m} - (1-\beta_1)\nabla_{\theta}&nbsp;J(\vec{\theta})\)</span></li>
+<li><span class="math">\(\vec{s} \leftarrow \beta_2 \vec{s} + (1-\beta_2)\nabla_{\theta} J(\vec{\theta}) \otimes \nabla_{\theta}&nbsp;J(\vec{\theta})\)</span></li>
+<li><span class="math">\(\hat{\vec{m}} \leftarrow&nbsp;\frac{\hat{m}}{1-\beta_2^t}\)</span></li>
+<li><span class="math">\(\hat{s} \leftarrow&nbsp;\frac{\hat{s}}{1-\beta_2^t}\)</span></li>
+<li><span class="math">\(\vec{\theta} \leftarrow \vec{\theta} + \eta \hat{\vec{m}} \oslash&nbsp;\sqrt{\hat{\vec{s}}+\epsilon}\)</span></li>
+<li><span class="math">\(t\)</span>: iteration number (starts at&nbsp;1)</li>
+<li><span class="math">\(\epsilon\)</span>: typically <span class="math">\(10^{-7}\)</span></li>
+<li>Steps 3 and 4 are bookkeeping. Prevent <span class="math">\(\vec{m}\)</span> and <span class="math">\(\vec{s}\)</span> from biasing toward 0 at beginning&nbsp;training.</li>
+<li>Rarely need to tune <span class="math">\(\eta\)</span>.</li>
+</ol>
+</li>
+<li>Adamax - uses <span class="math">\(l_{\inf}\)</span> norm rather than <span class="math">\(l_2\)</span> norm. Sometimes more stable for some&nbsp;datasets.</li>
+<li>Nadam - Adam with Nesterov&nbsp;trick</li>
+<li>Sometimes adaptive optimization methods generalize poorly. Switch to <span class="caps">NAG</span> if&nbsp;so.</li>
+</ul>
+</li>
+<li>Jacobians: first order partial&nbsp;derivatives</li>
+<li>Hessians: second order partial derivatives. <span class="math">\(n^2\)</span> Hessians per output. Too big, too&nbsp;slow.</li>
+<li>Apply strong <span class="math">\(l_1\)</span> regularization during training to enforce sparsity. (zero out as many weights as&nbsp;possible)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">Class</th>
+<th align="right">Convergence Speed</th>
+<th align="right">Convergence Quality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><span class="caps">SGD</span></td>
+<td align="right">+</td>
+<td align="right">+++</td>
+</tr>
+<tr>
+<td align="left"><span class="caps">SGD</span> with momentum</td>
+<td align="right">++</td>
+<td align="right">+++</td>
+</tr>
+<tr>
+<td align="left"><span class="caps">SGD</span> with momentum, Nesterov</td>
+<td align="right">++</td>
+<td align="right">+++</td>
+</tr>
+<tr>
+<td align="left">Adagrad</td>
+<td align="right">+++</td>
+<td align="right">+ (stops too early)</td>
+</tr>
+<tr>
+<td align="left">RMSProp</td>
+<td align="right">+++</td>
+<td align="right">++ or +++</td>
+</tr>
+<tr>
+<td align="left">Adam</td>
+<td align="right">+++</td>
+<td align="right">++ or +++</td>
+</tr>
+<tr>
+<td align="left">Nadam</td>
+<td align="right">+++</td>
+<td align="right">++ or +++</td>
+</tr>
+<tr>
+<td align="left">AdaMax</td>
+<td align="right">+++</td>
+<td align="right">++ or +++</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Learning Rate Scheduling: goldilock situation<ul>
+<li>learning schedules: to reduce learning rate during&nbsp;training</li>
+<li>Power scheduling: Set the learning rate to a function of the iteration number <span class="math">\(t\)</span>: <span class="math">\(\eta(t)=\frac{\eta_0}{(1+\frac{t}{s})^c}\)</span><ul>
+<li><span class="math">\(\eta\)</span>: initial learning&nbsp;rate</li>
+<li><span class="math">\(c\)</span>: power (typically&nbsp;1)</li>
+<li><span class="math">\(s\)</span>:&nbsp;steps</li>
+<li>Schedule drops quickly, then more&nbsp;slowly</li>
+<li><span class="math">\(\eta_0\)</span>, <span class="math">\(s\)</span>, maybe <span class="math">\(c\)</span> must be&nbsp;tuned</li>
+</ul>
+</li>
+<li>Exponential scheduling<ul>
+<li>faster than power: <span class="math">\(\eta(t)=\eta_0&nbsp;0.1^{\frac{t}{s}}\)</span></li>
+</ul>
+</li>
+<li>Piecewise Constant Scheduling<ul>
+<li>Fiddle with different learning rates for different epochs: <span class="math">\(\eta_0=0.1\)</span> for 5 epochs, then <span class="math">\(\eta_1=0.001\)</span> for 50&nbsp;epochs</li>
+</ul>
+</li>
+<li>Performance scheduling: measure validation rate every N steps (like early stopping) and reduce learning rate by a factor of <span class="math">\(\lambda\)</span> when error stops&nbsp;dropping. </li>
+<li>I-cycle scheduling: Increase <span class="math">\(\eta_0\)</span> linearly to <span class="math">\(\eta_1\)</span> halfway through training. Decrease back to <span class="math">\(\eta_0\)</span> linearly, finish last few epochs dropping learning rate by orders of magnitude (still linearly). <ul>
+<li>find <span class="math">\(\eta_1\)</span> using the optimal learning rate approach, then set <span class="math">\(\eta_0=\frac{1}{10}\eta_1\)</span></li>
+<li>If momentum, start high (0.95), drop low (0.85) linearly for first half, back up to high (0.95) for second half, finish last few epochs at&nbsp;max</li>
+</ul>
+</li>
+<li>I-cycle &gt; exponential &gt;&nbsp;performance</li>
+</ul>
+</li>
+<li>Regularization to prevent overfitting: Batch Normalization and early stopping are two good&nbsp;techniques</li>
+<li>Use <span class="math">\(l_1\)</span> or <span class="math">\(l_2\)</span> regularization to constrain a networks connection weights, computing a regularization loss at each training step, which is added to the final&nbsp;loss. </li>
+<li><span class="math">\(l_1\)</span> for a sparse model (many weights equal to&nbsp;zero)</li>
+<li>typically apply the same regularizer to all layers in a&nbsp;network.</li>
+<li>Dropout is a regularization technique, adds almost 1-2% accuracy.<ul>
+<li>At almost every training step, every neuron has probability <span class="math">\(p\)</span> of being temporarily &#8220;dropped out&#8221;, ignored for this training&nbsp;step.</li>
+<li><span class="math">\(p\)</span> is also called the &#8220;dropout rate&#8221;, set 10-50%, 20-30% for RNNs, 40-50% for CNNs. Dropout is zero after&nbsp;training </li>
+<li>Network with dropout is more robust and generalizes&nbsp;better.</li>
+<li>In practice, you only add dropout to the top 1-3 layers (excluding the output&nbsp;layer).</li>
+<li>We must multiply each input connection weight by the &#8220;keep probability&#8221; <span class="math">\((1-p)\)</span> after training. Or divide each neuron&#8217;s output by the keep probability during training. This is becasue dropout artificially increases input connection&nbsp;weights.</li>
+<li>Make sure to evaluate the training loss without dropout (after training), since a model can overfit the training set and have similar training and validation&nbsp;loss. </li>
+<li>Model overfitting, <span class="math">\(p&nbsp;\uparrow\)</span></li>
+<li>Model underfitting, <span class="math">\(p&nbsp;\downarrow\)</span></li>
+<li>large layers, <span class="math">\(p&nbsp;\uparrow\)</span></li>
+<li>small layer, <span class="math">\(p&nbsp;\downarrow\)</span></li>
+<li>state-of-the-art architectures only use dropout after last hidden&nbsp;layer.</li>
+<li>Dropout slows convergence, but results in much better&nbsp;model</li>
+<li>use alpha dropout for <span class="caps">SELU</span></li>
+<li>Training a dropout network is mathematically equivalent to approximate Bayesian inference in a Deep Gaussian&nbsp;Process</li>
+</ul>
+</li>
+<li>Monte Carlo (<span class="caps">MC</span>) Dropout - boosts performance, provides better measure of uncertainty, simple to implement.<ul>
+<li>Averaging over multiple with dropout on gives us a <span class="caps">MC</span> estimate that is more&nbsp;reliable.</li>
+<li><span class="caps">MC</span> samples is a tunable hyperparameter, increasing it increases prediction accuracies, uncertainity estimates, and inference&nbsp;time.</li>
+</ul>
+</li>
+<li>Max-norm regularization: for each neuron, constrain the weights <span class="math">\(\vec{w}\)</span> of incoming connections such that <span class="math">\(\left\lVert \vec{w} \right\rVert_2 \leq r\)</span>, where <span class="math">\(r\)</span> is the max-norm hyperparameter, <span class="math">\(\left\lVert \right\rVert_2\)</span> is the <span class="math">\(l_2\)</span>&nbsp;norm. </li>
+<li>Typically, compute <span class="math">\(\left\lVert \vec{w} \right\rVert_2\)</span> after each training step and rescale <span class="math">\(\vec{w}\)</span> if needed: <span class="math">\(\vec{w} \leftarrow \frac{\vec{w}r}{\left\lVert \vec{w}&nbsp;\right\rVert_2}\)</span></li>
+<li>Reduce <span class="math">\(r\)</span>; increase regularization, reduce&nbsp;overfitting</li>
+<li>Max-norm regularization can help alleviate unstable&nbsp;gradients</li>
+</ul>
+<p>Default <span class="caps">DNN</span>&nbsp;configuration</p>
+<table>
+<thead>
+<tr>
+<th align="left">Hyperparameter</th>
+<th align="right">Default Value</th>
+<th align="right">Self-Normalizing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Kernal initializer</td>
+<td align="right">He initialization</td>
+<td align="right">LeCun initialization</td>
+</tr>
+<tr>
+<td align="left">Activation Function</td>
+<td align="right"><span class="caps">ELU</span></td>
+<td align="right"><span class="caps">SELU</span></td>
+</tr>
+<tr>
+<td align="left">Normalization</td>
+<td align="right">None if shallow; Batch Norm if deep</td>
+<td align="right">None (self-normalization)</td>
+</tr>
+<tr>
+<td align="left">Regularization</td>
+<td align="right">Early stopping (plus <span class="math">\(l_2\)</span> reg. if needed</td>
+<td align="right">+ (stops too early)</td>
+</tr>
+<tr>
+<td align="left">Optimizer</td>
+<td align="right">Momentum optimization (or RMSProp or Nadam)</td>
+<td align="right">Momentum optimization (or RMSProp or Nadam)</td>
+</tr>
+<tr>
+<td align="left">Learning rate schedule</td>
+<td align="right">1-cycle</td>
+<td align="right">1-cycle</td>
+</tr>
+<tr>
+<td align="left">- Normalize input features</td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="left">- for sparse model, use <span class="math">\(l_1\)</span> reg.</td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="left">- for low-latency model (fast predictions), use fewer layers, fold in <span class="caps">BN</span> layers, use <span class="caps">RELU</span>, sparse model, drop precision 32 -&gt; 16 -&gt; 8 bits.</td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="left">- For risk-sensitive or irrelevent inference latency application, use <span class="caps">MC</span> Dropout to boost performance, improve reliavility of probability estimates, improve uncertainty estimates.</td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            </div><!-- /.entry-content -->
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+  <h4>Pages</h4>
+
+  <ul>
+
+    <li ><a href="/pages/about.html">About</a></li>
+  
+  <h4>Categories</h4>
+  <ul class="blank">
+    <li><a href="/category/catholic.html">Catholic</a></li>
+    <li><a href="/category/science.html">Science</a></li>
+  </ul>
+
+
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/hoopyeah" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="/theme/js/libs/gumby.min.js"></script>
+  <script src="/theme/js/plugins.js"></script>
+</body>
+</html>
