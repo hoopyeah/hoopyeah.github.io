@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>Notes on U-Net Paper</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/pygment.css" />
+
+        <script src="/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="/">Hoopyeah <strong>Jesus Christ is King of the Universe</strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="/">Home</a></li>
+
+                <li><a href="/pages/about.html">About</a></li>
+                <li><a href="/pages/sister-future.html">Sister&nbsp;future</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="/notes-on-u-net-paper.html" rel="bookmark"
+                   title="Permalink to Notes on U-Net Paper">Notes on U-Net&nbsp;Paper</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2021-06-21T10:40:00-04:00">
+                Mon 21 June 2021
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="/author/cody-fernandez.html"> Cody Fernandez</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h1>U-<span class="caps">NET</span></h1>
+<ul>
+<li>The architecture consists of a contracting path to capture context and a symmetric expanding path that enables precise localization.<ul>
+<li>localization: a class label is supposed to be assigned to each&nbsp;pixel</li>
+</ul>
+</li>
+<li>Built upon paper &#8220;Fully convolutional networks for semantic segmentation&#8221; Long et. al&nbsp;[9]</li>
+<li>In [9], you supplement a usual contracting network by successive layers, replacing pooling operators with upsampling operators. These layers increase output resolution. To localize, high resolution features from contracting path are combined with teh upsampled output. a successive convolution layer then learns to assemble more precise output from this&nbsp;info</li>
+<li>Modification: in the upsampling part, we have a large number of feature channels. These allow the network to propagate context information to higher resolution layers. Now the expansive path is pretty much symmetric with teh contracting path&nbsp;(u-shape)</li>
+<li>U-net has no fully connected layers and only uses the &#8220;valid&#8221; part of each convolution. <ul>
+<li>valid: segmentation map only contains pixels for which the full context is available in the input&nbsp;image.</li>
+</ul>
+</li>
+<li>Seamless segmentiaon of arbitrarily large images through an overlap-tile&nbsp;strategy</li>
+<li>to predict border region pixels, mirror the input image to extrapolate the missing context.<ul>
+<li>reduces <span class="caps">GPU</span> memory&nbsp;issues</li>
+</ul>
+</li>
+<li>Apply elastic deformations to the available training images<ul>
+<li>if your dataset is&nbsp;weak</li>
+<li>value of data augementation for learning invariance&nbsp;[2]</li>
+</ul>
+</li>
+<li>Word description of architecture<ul>
+<li>Contracting path (left) and expansive path (right)<ul>
+<li>contracting path is standard <span class="caps">CNN</span>. Repeat two 3x3 (unpadded) convolutions, followed by a ReLU and a 2x2 max pooling with stride 2 (for&nbsp;downsampling).</li>
+<li>at each downsamplingk double the number of feature&nbsp;channels</li>
+</ul>
+</li>
+<li>expansive path, upsample the feature map, 2x2 &#8220;upconvolution&#8221; to halve the number of feature channels, concatenate with cropped feature map from contracting path, two 3x3 convolutions, two&nbsp;ReLUs</li>
+<li>final layer, 1x1 convolution to map each 64-component feature vector to teh number of classes. 23 convolution layers in&nbsp;total</li>
+</ul>
+</li>
+<li>For seamless tiling of output segmentation map, select input tile size such that all 2x2 max-poolings are applied to a layer with even x- and&nbsp;y-size.</li>
+<li>The output image is smaller that the input by a constant border width due to the unpadded&nbsp;convolutions.</li>
+<li>Favor large input tiles over large batch size<ul>
+<li>batch size of 1 single&nbsp;image</li>
+</ul>
+</li>
+<li>high momentum (.99) so a large number of previously seen training samples determine the update in the current optimization&nbsp;step</li>
+<li>Energy function: pixel-wise soft-max over the final feature map combined with the cross entropy loss&nbsp;function</li>
+<li>soft-max: <span class="math">\(p_k(\vec{x})=\frac{e^{a_k(\vec{x})}}{\sum_{k'=1}^{k}e^{a_{k'}(\vec{x})}}\)</span><ul>
+<li><span class="math">\(a_k(\vec{x}\)</span>: activation in feature channel <span class="math">\(k\)</span> at pixel position <span class="math">\(\vec{x} \in \Omega\)</span> with <span class="math">\(\Omega \subset&nbsp;\mathbb{Z}^2\)</span></li>
+<li><span class="math">\(k\)</span>: number of&nbsp;classes</li>
+<li><span class="math">\(p_k(\vec{x})\)</span>: approximated maximum function<ul>
+<li><span class="math">\(p_k(\vec{x}) \approx 1\)</span> for the <span class="math">\(k\)</span> that has the maximum activation <span class="math">\(a_k(\vec{x})\)</span></li>
+<li><span class="math">\(p_k(\vec{x}) \approx 0\)</span> for all other <span class="math">\(k\)</span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>cross entropy then penalizes at each position the deviation of <span class="math">\(p_l(\vec{x})\)</span> from 1 by <span class="math">\(E=\sum_{\vec{x} \in \Omega} W(\vec{x}) \log (p_l(\vec{x})(\vec{x}))\)</span><ul>
+<li><span class="math">\(l\)</span>: <span class="math">\(\Omega \rightarrow {1,...,k}\)</span> the true label of each&nbsp;pixel</li>
+<li><span class="math">\(w\)</span>: <span class="math">\(\Omega \rightarrow \mathbb{R}\)</span> a weight map we introduce to givbe some pixels more importance during&nbsp;training</li>
+</ul>
+</li>
+<li>pre-compute the weight map for each ground truth segmentation to compensate the different frequency of pixels from a certain class in the training set<ul>
+<li>also to force the network to learn teh small separation borders introduced between touching cells (always&nbsp;necessary?)</li>
+</ul>
+</li>
+<li>Compute separation border using morphological&nbsp;operations </li>
+<li>weight map: <span class="math">\(w(\vec{x})=w_c(\vec{x})+w_0 \exp(-\frac{(d_1(\vec{x})+d_2(\vec{x}))^2}{2\sigma_2})\)</span><ul>
+<li><span class="math">\(w_c\)</span>: <span class="math">\(\Omega \rightarrow \mathbb{R}\)</span> weight map to balance the class&nbsp;frequencies</li>
+<li><span class="math">\(d_1\)</span>: <span class="math">\(\Omega \rightarrow \mathbb{R}\)</span> distance to the border of the nearest&nbsp;cell</li>
+<li><span class="math">\(d_2\)</span>: <span class="math">\(\Omega \rightarrow \mathbb{R}\)</span> distance to the border of the second nearest&nbsp;cell</li>
+</ul>
+</li>
+<li>set <span class="math">\(w_0=10\)</span> and <span class="math">\(\sigma \approx 5\)</span>&nbsp;pixels</li>
+<li>Initialize weights so feature map has unit variance. Use a Gaussian with standard deviation of <span class="math">\(\sqrt{\frac{2}{N}}\)</span>, <span class="math">\(N\)</span> the number of incoming nodes of one&nbsp;neuron.</li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            </div><!-- /.entry-content -->
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+  <h4>Pages</h4>
+
+  <ul>
+
+    <li ><a href="/pages/about.html">About</a></li>
+    <li ><a href="/pages/sister-future.html">Sister&nbsp;future</a></li>
+  
+  <h4>Categories</h4>
+  <ul class="blank">
+    <li><a href="/category/catholic.html">Catholic</a></li>
+    <li><a href="/category/science.html">Science</a></li>
+  </ul>
+
+
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/hoopyeah" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="/theme/js/libs/gumby.min.js"></script>
+  <script src="/theme/js/plugins.js"></script>
+</body>
+</html>
