@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>Notes on Adjoint Methods</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/pygment.css" />
+
+        <script src="/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="/">Hoopyeah <strong>Jesus Christ is King of the Universe</strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="/">Home</a></li>
+
+                <li><a href="/pages/about.html">About</a></li>
+                <li><a href="/pages/sister-future.html">Sister&nbsp;future</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="/notes-on-adjoint-methods.html" rel="bookmark"
+                   title="Permalink to Notes on Adjoint Methods">Notes on Adjoint&nbsp;Methods</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2021-08-08T10:40:00-04:00">
+                Sun 08 August 2021
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="/author/cody-fernandez.html"> Cody Fernandez</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h1><span class="caps">MIT</span>&nbsp;Notes</h1>
+<ul>
+<li>output <span class="math">\(\vec{x}\)</span></li>
+<li>set of <span class="math">\(M\)</span> equations parameterized by <span class="math">\(P\)</span> variables <span class="math">\(\vec{p}\)</span>. These <span class="math">\(\vec{p}\)</span> could be:<ul>
+<li>design&nbsp;parameters</li>
+<li>control&nbsp;variables</li>
+<li>decision&nbsp;parameters</li>
+</ul>
+</li>
+<li>compute <span class="math">\(g(\vec{x}, \vec{p})\)</span>. <span class="math">\(g\)</span> might be loss funciton of a neural network comparing prediction <span class="math">\(\vec{x}\)</span> to&nbsp;data</li>
+<li>Also want gradient <span class="math">\(\frac{dg}{d\vec{p}}\)</span>. <em>Adjoint methods</em> give efficient way to evaluate <span class="math">\(\frac{dg}{d\vec{p}}\)</span>, with cost independent of <span class="math">\(P\)</span> and comparable to the cost of solving for <span class="math">\(\vec{x}\)</span>&nbsp;once. </li>
+<li>In neural network, adjoint methods are called backpropagation. In automatic differentiation they are reverse-mode&nbsp;differentiation.</li>
+<li>So <span class="math">\(g(\vec{x}, \vec{p})\)</span><ul>
+<li>measures sensitivity of answers to <span class="math">\(\vec{p}\)</span></li>
+<li>indicates a useful search direction to optimize <span class="math">\(g\)</span>, picking the <span class="math">\(\vec{p}\)</span> that produce some&nbsp;result</li>
+</ul>
+</li>
+<li>shape or topology optimization: <span class="math">\(\vec{p}\)</span> controls the shape and placement of blobs, a.k.a. <em>inverse design</em>. <span class="math">\(P\)</span> can be hundreds, thousands,&nbsp;millions.</li>
+<li>Take <span class="math">\(A\vec{x}=\vec{b}\)</span>. <span class="math">\(A\)</span> and <span class="math">\(\vec{b}\)</span> are real and depend in some way on <span class="math">\(\vec{p}\)</span>. Evaluate the gradient directly, where subscripts indicate partial derivatives:
+<div class="math">$$
+\frac{dg}{d\vec{p}}=g_{\vec{p}}+g_{\vec{x}}\vec{x}_{\vec{p}}
+$$</div>
+</li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            </div><!-- /.entry-content -->
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+  <h4>Pages</h4>
+
+  <ul>
+
+    <li ><a href="/pages/about.html">About</a></li>
+    <li ><a href="/pages/sister-future.html">Sister&nbsp;future</a></li>
+  
+  <h4>Categories</h4>
+  <ul class="blank">
+    <li><a href="/category/catholic.html">Catholic</a></li>
+    <li><a href="/category/science.html">Science</a></li>
+  </ul>
+
+
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/hoopyeah" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="/theme/js/libs/gumby.min.js"></script>
+  <script src="/theme/js/plugins.js"></script>
+</body>
+</html>
